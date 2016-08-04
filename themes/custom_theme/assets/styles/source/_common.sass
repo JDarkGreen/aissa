@@ -86,19 +86,20 @@ img.aligncenter, img.alignright, img.alignleft
 /***************************************************************************************/
 //++ Botón Ver Más
 .btnCommon__show-more
-	+transition( box-shadow 600ms ease-in-out , color 500ms ease-in )
-	color      : white 
+	+transition( all 500ms ease-in-out )
+	border     : 1px solid black 
+	color      : black 
 	font-size  : 14px 
 	line-height: 1em 
 	padding    : 7px 11px
-
 	//hover y focus
 	&:hover , &:focus
-		color          : white 
+		color          : black 
 		outline        : 0px !important
 		text-decoration: none 
+	//hover 
 	&:hover 
-		+box-shadow( inset 90px 0 0 0 white )
+		+scale( 1.1 )
 // VARIACIONES 
 
 //BOTÓN HACIA ARRIBA 
@@ -117,13 +118,16 @@ img.aligncenter, img.alignright, img.alignleft
 /***************************************************************************************/
 /**-- 1.5 TÍTULOS   ------------------------------------------------------------------**/
 /***************************************************************************************/
-//++ Titulo de Pagina
+//Titulo de Pagina
 .titleCommon__page
 	line-height: 1em 
 
-//++ Título de seccion de paginas
-.pageSectionCommon__title
-	font-size    : 16px
+//Título de Sección
+.titleCommon__section
+	background         : url("../../images/icon/icon_common_title.gif") no-repeat
+	background-position: center 35px
+	margin             : 0 auto 15px 
+	padding            : 0 0 25px 
 
 /***************************************************************************************/
 /**-- 1.6 REDES SOCIALES -------------------------------------------------------------**/
@@ -219,22 +223,61 @@ img.aligncenter, img.alignright, img.alignleft
 /***************************************************************************************/
 /**-- 1.10 SIDEBAR COMÚN -------------------------------------------------------------**/
 /***************************************************************************************/
+
 /** [ SIDEBAR COMMON ] **/
 .sidebarCommon
-	//Links 
-	a 
-		+transition( all 500ms ease )
-		display        : block 
-		font-weight    : 600
-		margin         : 0 10px 5px
-		text-decoration: none  
+ 
+/** [ SECCIÓN DE PRENDAS ] **/
+.sectionCommon__prendas
+	margin: 0 auto 47px
+
+	//Título
+	h2
+		color      : white
+		font-size  : 24px
+		font-weight: 600		
+		margin     : 0
+		padding    : 15px
 	
-/* Titulo sidebar */
-.titleSidebar
-	color      : white  
-	font-size  : 20px
-	font-weight: 600
-	padding    : 10px 
+	//Contenedor sección
+	.content__section 
+		padding: 27px 35px
+
+	//Menu de prendas
+	ul.productList__menu
+		list-style-type: none 
+		margin         : 0
+		padding        : 0
+		li 
+			//Primer Elemento
+			&:first-child 
+				a 
+					font-size  : 19px
+					font-weight: 600 
+				&:before 
+					background: transparent
+			//Antes
+			&:before 
+				background: #E422BB
+				content   : ""
+				display   : inline-block
+				height    : 10px 
+				margin    : 0 10px 0 0
+				width     : 10px
+
+			//Links 
+			a 
+				font-size      : 15px 
+				text-decoration: none
+
+	//Línea Separadora
+	.line-divisor
+		background: white 
+		height    : 1px 
+		margin    : 10px auto 
+		width     : 100%
+
+
 
 /***************************************************************************************/
 /**-- 1.11 PREVIEW BLOG DE POST ------------------------------------------------------**/
@@ -243,7 +286,7 @@ img.aligncenter, img.alignright, img.alignleft
 //Slider de Post y preview de post
 .pagePreview_post
 	/* Artículos */
-	.articles-item
+	.articleItem
 		color      : black 
 		font-family: "Raleway" , sans-serif
 		margin     : 0 auto 40px
@@ -271,3 +314,21 @@ img.aligncenter, img.alignright, img.alignleft
 			figure 
 				img 
 					+scale( 1.2 )
+
+
+/***************************************************************************************/
+/**-- 1.12 PAGINADOR -----------------------------------------------------------------**/
+/***************************************************************************************/
+
+.sectionPagination
+	a 
+		+transition( all 500ms ease-in-out )
+		color          : black 
+		display        : inline-block
+		font-size      : 18px 
+		font-weight    : 600 
+		margin         : 0 2px 
+		text-decoration: none 
+		//HOVER AND ACTIVE 
+		&:hover , &.active 
+			color: #C500AE

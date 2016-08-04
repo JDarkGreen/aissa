@@ -138,7 +138,8 @@ var j = jQuery.noConflict();
 	    /************************************************************************
 	    * SUBIR LA IMAGEN CON UN WIDGET
 	    ************************************************************************/
-	    /*if( j(".upload-img-btn-widget").length ){ 
+	    if( j(".upload-img-btn-widget").length ){ 
+
 	    	j(document).on( "click", ".upload-img-btn-widget", function ( e ){
 	    		//Prevenir accion por defecto
 	    		e.preventDefault();
@@ -168,7 +169,9 @@ var j = jQuery.noConflict();
 	        	// Open the uploader dialog
 	        	Uploader.open();
 	    	});
-	    }	*/    
+	    } else{
+	    	console.log("no widget available");
+	    }  
 
 
 	/*---------------------------- LIMITE ------------------------------*/

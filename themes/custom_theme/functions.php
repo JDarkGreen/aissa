@@ -52,6 +52,17 @@ include_once("functions/nav-active-parent.php");
 include_once("functions/menu-register.php");
 
 /***********************************************************************************************/
+/* Agregando nuevos SIDEBARS y secciones para widgets */
+/***********************************************************************************************/	
+include_once("functions/add-sidebars.php");
+
+/***********************************************************************************************/
+/* Registrar widgets  */
+/***********************************************************************************************/
+#WIDGET DE IMAGEN TEXTO Y LINK
+include_once("functions/widgets/widget-ad-image.php");
+
+/***********************************************************************************************/
 /* Agregando nuevos tipos de post  */
 /***********************************************************************************************/
 require_once("functions/add-type-posts.php");
@@ -71,6 +82,14 @@ include_once("functions/support-formats.php");
 /* Registrar nuevos metabox  */
 /***********************************************************************************************/
 include_once("functions/add-new-metabox.php");
+
+/***********************************************************************************************/
+/* Registrar nuevas taxonomías  */
+/***********************************************************************************************/
+include_once("functions/add-new-taxonomy.php");/***********************************************************************************************/
+/* Campos personalizados para las  taxonomías  */
+/***********************************************************************************************/
+include_once("functions/taxonomy/custom-fields-taxonomy.php");
 
 
 

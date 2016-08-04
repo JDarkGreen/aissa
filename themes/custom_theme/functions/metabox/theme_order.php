@@ -18,6 +18,7 @@ function theme_sort_item_custom_post_type()
 	#Array de tipos de post personalizado.
 	$custom_post_types   = array();
 	$custom_post_types[] = "slider-home";
+	$custom_post_types[] = "producto-theme";
 
 	add_meta_box( 'mb-sort-custom-post-type', 'Orden de Elementos', 'theme_mb_sort_elements_cb', $custom_post_types , 'side', 'high' );
 }

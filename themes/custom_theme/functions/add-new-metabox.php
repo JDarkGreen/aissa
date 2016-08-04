@@ -538,5 +538,11 @@ function cd_mb_species_on_products_save( $post_id )
 
 include("metabox/theme_order.php");
 
+/***************************************************************************************/
+/**- Incluir metabox de Destacado Post --**/
+/***************************************************************************************/
+
+include("metabox/featured_custom_type.php");
+
 
 ?>

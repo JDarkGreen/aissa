@@ -205,168 +205,33 @@ body,html
 		margin    : 0 4px 
 		width     : 14px 
 
-/** [ Slider o Carousel de Productos ] **/
-.carouselProductos 
-	//articulo 
-	.itemProducto
-		//Imagen 
-		figure
-			background-position: bottom left
-			background-repeat  : no-repeat
-			background-size    : cover
-			height             : 175px 
-			overflow           : hidden
-			width              : 196px
-		//Titulo 
-		h3 
-			font-size: 14px 
-			margin   : 0 auto 
-		//hover 
-		&:hover 
-			figure 
-				img 
-					+scale( 1.2 )
+/** [ WRAPPER PÁGINA INICIO ] **/
+.pageInicio__wrapper
+	padding: 60px 0 0
 
-//SECCION FACEBOOK
-.pageInicio__facebook
-	padding: 0 5%
+/** [ PRESENTACIÓN INICIO ] **/
+.pageInicio__presentation
+	font-size  : 14px
+	line-height: 1.4em
+	margin     : 0 auto 55px
+	padding    : 18px 34px
+
+/** [ BOTONERAS ] **/
+.articlePublicity
+	margin: 0 auto 50px
 	
 /***************************************************************************************/
 /**--  PAGINA NOSOTROS  --------------------------------------------------------------**/
 /***************************************************************************************/
-
-// SECCIÓN DESCRIPCIÓN
-.pageNosotros
-
-	/* Sobreescribiendo las flechas de carousel */
-	.arrowCarouselNosotros
-		align-items    : center 
-		bottom         : 16px
-		color          : white 
-		display        : flex 
-		height         : 52px 
-		justify-content: center 
-		position       : absolute
-		text-decoration: none 
-		width          : 38px 
-		z-index        : 999
-	.arrowCarouselNosotros-prev
-		left  : 0
-	.arrowCarouselNosotros-next
-		left  : 38px 
-
-//CONTENIDO DE PÁGINA
-.pageNosotros__content
-	margin: 30px auto
-	//Título
-	h1 , h2 , h3 , h4 , h5 
-		font-size  : 16px 
-		font-weight: 600 
-		margin     : 0 auto 20px 
-	//Párrafos
-	p 
-		color      : black 
-		font-size  : 14px 
-		line-height: 1.4em
-
-//SECCIÓN APTITUDES
-.pageNosotros__aptitudes
-	justify-content: space-between
-	width          : 100%
-//ITEM  
-.pageNosotros__item
-	color  : white
-	margin : 0 1px
-	padding: 54px 38px
-	width  : 49%
-	/* Subtitulos de item */
-	h3 
-		font-size: 22px
-	/* Contenido de Item */
-	.text-content
-		overflow: hidden
-		height  : 160px 
-		p 
-			font-size  : 13px 
-			line-height: 1.4em 
-
-
-/***************************************************************************************/
-/**--  PÁGINA ESPECIES ---------------------------------------------------------------**/
-/***************************************************************************************/
-
-//Sección de Página 
-.pageEspecies__content
-	margin  : 5px auto
-	overflow: hidden
-
-//Preview item
-.itemEspecie__preview
-	background: white 	
-	display   : block
-	float     : left
-	height    : 220px
-	margin    : 7px 6px
-	overflow  : hidden
-	padding   : 3px
-	width     : 23%
-	+transition( all 500ms ease-in-out )
-	//Link 
-	a 
-		text-decoration: none
-	//Imagen
-	figure 
-		overflow: hidden
-		img 
-			+transition( all 1.2s ease-in-out )
-	//Titulo
-	h3
-		font-size  : 13px 
-		font-weight: bold
-		line-height: 18px 
-		text-align : center
-	//Hover preview 
-	&:hover 
-		img 
-			+scale( 1.2 )
-
-//Single Detalle Especie
-.articleSingleEspecie
-	margin    : 10px auto 0
-	//Titulo
-	h1 
-		font-size  : 15px 
-		font-weight: bold 
-		line-height: 20px
-		margin     : 15px auto
-	//Párrafo
-	p 
-		font-size  : 13px 
-		line-height: 18px
-		margin     : 0 auto 5px
 
 
 /***************************************************************************************/
 /**--  PÁGINA PRODUCTOS --------------------------------------------------------------**/
 /***************************************************************************************/
 
-/** [ PRODUCTOS CONTENEDOR GALERIA ] **/
-.pageProyectos__content 
-	margin: 10px auto 0
-
-//Preview del Proyecto
-.articleProyecto__preview
-	background: white
-	border    : 1px solid #CCC
-	display   : block
-	float     : left
-	height    : 225px
-	margin    : 7px 4px
-	overflow  : hidden
-	padding   : 5px
-	text-align: center
-	width     : 24.2%
-	+transition( all 500ms ease-in )
+//Preview de Producto
+.itemProducto__preview
+	margin: 0 auto 49px
 	//link 
 	a 
 		text-decoration: none
@@ -375,62 +240,23 @@ body,html
 		overflow: hidden
 		img 
 			+transition( all 900ms ease-in )
-			height: 172px 
-			width : 230px 
 	//titulo
 	h3
-		color      : #666666
-		font-size  : 13px  
-		font-weight: bold
-		margin     : 0 auto
+		font-size  : 15px  
+		height     : 24px 
+		line-height: 1em 
+		margin     : 0 auto 14px
 	//Hover 
 	&:hover  
 		//Image 
 		img 
 			+scale( 1.2 )
 
-/** [ SECCIÓN DE PAGINACIÓN ] **/
-.sectionPagination
-	margin: 20px auto 25px
-	a 
-		border-radius  : 4px
-		color          : #FFF
-		display        : inline-block
-		font-size      : 13px 
-		margin         : 2px
-		padding        : 3px 8px
-		text-decoration: none 
-		+transition( all 500ms ease-in )
-
-
-/** [ SINGLE PRODUCTO ] **/
-.articleSingleProducto
-	img 
-		height   : auto 
-		margin   : 0 auto 
-		max-width: 100% 
-		width    : 100%
-
-/** [ contenedor de especies ] **/
-.sectionEspecies
-	h3 
-		font-size  : 15px
-		font-weight: bold
-		line-height: 18px
-	//Lista
-	ul 
-		margin: 13px auto 
-		li 
-			a 
-				font-size      : 13px 
-				text-decoration: none 
-
 
 
 /***************************************************************************************/
 /**--  PAGINA BLOG  ----------------------------------------------------------------**/
 /***************************************************************************************/
-
 
 /** [ PREVIEW DE BLOG ] **/
 .articleBlog__preview
@@ -711,7 +537,6 @@ body,html
 		position       : relative
 		text-decoration: none
 		z-index        : 999999
-		&:focus , &:hover 
 
 	/** [ MAIN NAVIGATION MOBILE ] **/
 	.mainNavigationMobile

@@ -30,7 +30,8 @@ function add_thumbnail_columns_data( $column, $post_id ) {
 **/
 
 $custom_posts_type    = array();
-$custom_posts_type[0] = "slider-home";
+$custom_posts_type[] = "slider-home";
+$custom_posts_type[] = "producto-theme";
 
 
 if ( function_exists( 'add_theme_support' ) ) :

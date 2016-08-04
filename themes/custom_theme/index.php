@@ -12,6 +12,176 @@
 include( locate_template("partials/slider-home/slider-home-revolution.php") );
 ?>
 
+<!-- CONTENEDOR PÁGINA INICIO -->
+<section class="pageInicio__wrapper">
+
+	<!-- Layout -->
+	<div class="pageWrapperLayout">
+
+		<!-- 1.- Presentación -->
+		<div class="row">
+
+			<!-- Presentación -->
+			<div class="col-xs-12 col-sm-8">
+				<section class="pageInicio__presentation borderPurpleShadow">
+					<!-- Título -->
+					<h2 class="titleCommon__section text-uppercase text-xs-center colorPurple">
+						<?= __( "aissa secret" , LANG ); ?>
+					</h2> <!-- /. -->
+
+					<?php 
+						if( isset($options['theme_meta_presentacion']) && !empty($options['theme_meta_presentacion']) ) : 
+						echo apply_filters("the_content" , $options['theme_meta_presentacion'] );
+						endif;
+					?>
+
+					<!-- Botón ver más -->
+					<a href="" class="btnCommon__show-more text-uppercase pull-xs-right"> 
+						<?php _e( "ver más" , LANG  );  ?>
+					</a> <!-- / -->
+
+					<!-- Limpiar Floats --> <div class="clearfix"></div>
+
+				</section> <!-- /.pageInicio__presentation -->
+			</div> <!-- /.col-xs- -->
+
+			<!-- Catálogo -->
+			<div class="col-xs-12 col-sm-4">
+				<section class="pageCommon__catalogo">
+					<a href="">
+						<img src="<?= IMAGES ?>/catalogo_aissa.jpg" alt="prendas-lencería-peru" class="img-fluid" />
+					</a>
+				</section> <!-- /. -->
+			</div>
+
+		</div> <!-- /.row -->
+
+		<!-- 2.- Productos -->
+		<!-- Título -->
+		<h2 class="titleCommon__section text-uppercase pull-xs-left colorPurple">
+			<?= __( "productos destacados" , LANG ); ?>
+		</h2> <!-- /. --> <div class="clearfix"></div>
+
+		<div class="row">
+			
+			<!-- 1.- Productos destacados -->
+			<div class="col-xs-12 col-sm-8">
+				<?php  
+					#Incluir Plantilla Productos Destacados.
+					include( locate_template("partials/products/featured-products.php") );
+				?>
+			</div> <!-- /.col-xs-8 -->
+
+			<!-- 2.- Sidebar  -->
+			<div class="col-xs-12 col-sm-4">
+				<aside class="sidebarCommon">
+					<?php  
+						#Incluir Plantilla Sidebar
+						include( locate_template("partials/common/sidebar-common.php") );
+					?>
+				</aside> <!-- /.sidebarCommon -->
+			</div> <!-- /. -->
+
+		</div> <!-- /.row -->
+
+		<!-- 3.- Botoneras nuestras Líneas -->
+		<section>
+		
+			<!-- Título -->
+			<h2 class="titleCommon__section text-uppercase pull-xs-left colorPurple">
+			<?= __( "nuestras líneas" , LANG ); ?>
+			</h2> <!-- /. --> <div class="clearfix"></div>
+
+			<!-- BOTONERAS -->
+			<section class="pageInicio__botoneras__lineas">
+				<div class="row">
+					<?php if ( is_active_sidebar( 'sidebar-line-products' ) ) : ?>
+						<?php dynamic_sidebar( 'sidebar-line-products' ); ?>
+					<?php else: __("Actualizando contenido" , LANG ) ; endif; ?>
+				</div> <!-- /.row -->
+			</section> <!-- /.pageInicio__botoneras__lineas -->
+
+		</section> <!-- /. -->
+
+
+		<!-- 4.- Miscelaneo -->
+		<section>
+			
+			<div class="row">
+					
+				<!-- Novedades -->
+				<div class="col-xs-12 col-sm-8">
+
+					<section class="pagePreview_post">
+						<!-- Titulo -->
+						<h2 class="titleCommon__section text-uppercase pull-xs-left colorPurple">
+							<?= __( "eventos & novedades" , LANG ); ?>
+						</h2> <!-- /. --> <div class="clearfix"></div>
+
+						<!-- Obtener los 2 ultimos posts random -->
+						<?php  
+							$args = array(
+								'order'          => 'DESC',
+								'orderby'        => 'date',
+								'post_status'    => 'publish',
+								'post_type'      => 'post',
+								'posts_per_page' => 2,
+							);
+							$last_posts = get_posts( $args );
+
+							foreach( $last_posts as $last_post ) :
+						?>
+							<!-- Articulo preview -->
+							<article class="articleItem">
+								<div class="row">
+
+									<!-- Imagen Destacada -->
+									<div class="col-xs-12 col-sm-3">
+										<figure>
+											<?php 
+												if( has_post_thumbnail( $last_post->ID ) ) : 
+													echo get_the_post_thumbnail( $last_post->ID , 'full' , array('class'=>'img-fluid') );
+												else: 	
+											?>
+												<img src="https://placeimg.com/900/688/any" alt="<?= $last_post->post_name; ?>" class="img-fluid" />
+											<?php endif; ?>	
+										</figure>
+									</div> <!-- /.col-xs-12 col-sm-3 -->
+
+									<!-- Texto extracto -->
+									<div class="col-xs-12 col-sm-3">
+
+								</div> <!-- /.row -->
+
+							</article> <!-- /.articleItem -->
+
+						<?php endforeach; ?>
+
+					</section> <!-- /.pagePreview_post -->
+
+				</div> <!-- /. -->
+
+				<!-- VIDEOS -->
+				<div class="col-xs-12 col-sm-4">
+
+					<section class="">
+						<!-- Titulo -->
+						<h2 class="titleCommon__section text-uppercase text-xs-center colorPurple">
+							<?= __( "videos" , LANG ); ?>
+						</h2> <!-- /. --> 
+
+					</section> <!-- /. -->
+
+				</div> <!-- /. -->
+
+			</div> <!-- /.row -->
+
+		</section> <!-- /. -->
+
+	</div> <!-- /.pageWrapperLayout -->
+
+</section> <!-- /.pageInicio__wrapper -->
+
 
 <!-- Footer -->
 <?php get_footer(); ?>

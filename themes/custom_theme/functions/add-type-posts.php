@@ -55,7 +55,7 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-exerpt-view',
 	);	
 
-	/*|>>>>>>>>>>>>>>>>>>>> SERVICIOS  <<<<<<<<<<<<<<<<<<<<|*/
+	/*|>>>>>>>>>>>>>>>>>>>> PRODUCTOS  <<<<<<<<<<<<<<<<<<<<|*/
 	
 	$labels3 = array(
 		'name'               => __('Productos'),
@@ -80,64 +80,11 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-cart',
 	);
 
-	/*|>>>>>>>>>>>>>>>>>>>> ESPECIES  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels4 = array(
-		'name'               => __('Especies'),
-		'singular_name'      => __('Especie'),
-		'add_new'            => __('Nueva Especie'),
-		'add_new_item'       => __('Agregar nueva Especie'),
-		'edit_item'          => __('Editar Especie'),
-		'view_item'          => __('Ver Especie'),
-		'search_items'       => __('Buscar Especies'),
-		'not_found'          => __('Especie no encontrado'),
-		'not_found_in_trash' => __('Especie no encontrado en la papelera'),
-	);
-
-	$args4 = array(
-		'labels'      => $labels4,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
-		'show_ui' => true,
-		'taxonomies'  => array( 'post_tag' ),
-		'menu_icon'   => 'dashicons-index-card',
-	);	
-
-
-	/*|>>>>>>>>>>>>>>>>>>>> PROYECTOS  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels5 = array(
-		'name'               => __('Proyectos'),
-		'singular_name'      => __('Proyecto'),
-		'add_new'            => __('Nuevo Proyecto'),
-		'add_new_item'       => __('Agregar nuevo Proyecto'),
-		'edit_item'          => __('Editar Proyecto'),
-		'view_item'          => __('Ver Proyecto'),
-		'search_items'       => __('Buscar Proyectos'),
-		'not_found'          => __('Proyecto no encontrado'),
-		'not_found_in_trash' => __('Proyecto no encontrado en la papelera'),
-	);
-
-	$args5 = array(
-		'labels'      => $labels5,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
-		'show_ui' => true,
-		'taxonomies'  => array( 'post_tag' ),
-		'menu_icon'   => 'dashicons-index-card',
-	);	
 
 	/*|>>>>>>>>>>>>>>>>>>>> REGISTRAR  <<<<<<<<<<<<<<<<<<<<|*/
 	register_post_type( 'slider-home' , $args  );
 	register_post_type( 'servicio' , $args2 );
-	register_post_type( 'producto-maderalia' , $args3 );
-	register_post_type( 'especie-maderalia' , $args4 );
-	register_post_type( 'proyecto-maderalia' , $args5 );
-
+	register_post_type( 'producto-theme' , $args3 );
 
 	flush_rewrite_rules();
 }
