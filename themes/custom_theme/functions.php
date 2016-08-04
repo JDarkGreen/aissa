@@ -62,6 +62,12 @@ require_once("functions/add-type-posts.php");
 include_once("functions/support-formats.php");
 
 /***********************************************************************************************/
+/* Opciones o filtros antes de salvar los posts o tipos de posts */
+/***********************************************************************************************/
+
+//include_once("functions/options-before-save-posts.php");
+
+/***********************************************************************************************/
 /* Registrar nuevos metabox  */
 /***********************************************************************************************/
 include_once("functions/add-new-metabox.php");
