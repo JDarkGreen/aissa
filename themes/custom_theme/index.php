@@ -149,7 +149,26 @@ include( locate_template("partials/slider-home/slider-home-revolution.php") );
 									</div> <!-- /.col-xs-12 col-sm-3 -->
 
 									<!-- Texto extracto -->
-									<div class="col-xs-12 col-sm-3">
+									<div class="col-xs-12 col-sm-9">
+
+										<?php  
+											#1.- Extraer texto contenido y solo mostrar 50 
+											# palabras
+											$limit_words  = 50;
+											$content_text = $last_post->post_content;
+											$content_text = wp_trim_words( $content_text , $limit_words );
+
+											#Mostrar 40 palabras
+											echo apply_filters("the_content", $content_text);
+										?>
+
+										<!-- Botón Ver Más -->
+										<a href="<?= get_permalink( $last_post->ID ); ?>" class="btnCommon__show-more text-uppercase pull-xs-right">
+										<?= __("ver más" , "LANG" ); ?> </a>
+
+										<!-- Limpiar Floats --> <div class="clearfix"></div>			
+
+									</div> <!-- / -->
 
 								</div> <!-- /.row -->
 
@@ -169,6 +188,49 @@ include( locate_template("partials/slider-home/slider-home-revolution.php") );
 						<h2 class="titleCommon__section text-uppercase text-xs-center colorPurple">
 							<?= __( "videos" , LANG ); ?>
 						</h2> <!-- /. --> 
+						
+						<!-- Contenedor de Video -->
+						<div class="pageInicio__video__preview containerRelative bgGrayEEE">
+							<?php  
+								#1.- Extraer solo el post destacado por orden
+								$args = array(
+									"posts_per_page" => -1,
+									"post_type"      => 'theme-video',
+									'post_status'    => 'publish',
+									'meta_key'       => 'mb_sort_elements_select',
+									'orderby'        => 'meta_value_num',
+									'order'          => 'ASC',
+									'meta_query'     => array(
+										array(
+											'key'     => 'theme_featured_item_check',
+											'value'   => 'on',
+											'compare' => '=',
+										),
+									),
+								);
+
+								#2.- Extraer
+								$featured_videos = get_posts( $args );
+								#3.- Escoger el primer video
+								$featured_video = $featured_videos[0];
+
+								#4.- Extraer Contenido
+								$link_video = $featured_video->post_content;
+								$link_video = str_replace( 'watch?v=' , 'embed/' , $link_video);
+							?> 
+								<!-- Frame de video -->
+								<iframe src="<?= $link_video; ?>" frameborder="0" width="100%" height="243" allowfullscreen ></iframe>
+
+								<!-- Botón redirecciona a galería -->
+								<a href="" class="btntoVideos bgGrayC9C9C9">
+									<?= __("Ir a Galería Videos" , LANG ); ?>
+									<!-- Icono -->
+									<i class="fa fa-angle-right colorPurple" aria-hidden="true"></i>
+								</a> 
+
+								<!-- Limpiar floats --> <div class="clearfix"></div>
+
+						</div> <!-- /.pageInicio__video__preview -->
 
 					</section> <!-- /. -->
 

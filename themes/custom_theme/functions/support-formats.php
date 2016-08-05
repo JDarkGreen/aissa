@@ -10,7 +10,7 @@
 	/**
 	* Imagen destacada
 	**/
-	$custom_types = array("post","page","slider-home","servicio","producto-theme","especie-maderalia","proyecto-maderalia");
+	$custom_types = array("post","page","slider-home","servicio","producto-theme","theme-marcas");
 
 	add_theme_support('post-thumbnails', $custom_types );
 

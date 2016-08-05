@@ -51,12 +51,36 @@ function custom_social_yt_render()
 
 /**
 <?php add_settings_section( $id, $title, $callback, $page ); ?>
-* SECCION TELEFONOS
+* SECCION EMPRESA
+**/
+/**
+* SECCION RUC
+**/
+add_settings_section( PREFIX."_themePage_section_ruc" , __( 'Personalizar Ruc:' , 'LANG' ), 'custom_settings_section_ruc_callback', 'customThemePageEmpresa' );
 
-//Inputs
+function custom_settings_section_ruc_callback()
+{ 
+	echo __( 'Coloca RUC correspondiente', 'LANG' );
+}
+
+//DIRECCIÓN
+add_settings_field( 'theme_ruc_text', __( 'Ruc Empresa:', 'LANG' ), 'custom_ruc_render', 'customThemePageEmpresa', PREFIX."_themePage_section_ruc" );
+//Renderizado 
+function custom_ruc_render() 
+{ 
+	$options = get_option( 'theme_settings' ); 
+	?>
+	<textarea name="theme_settings[theme_ruc_text]" id="" style="width:350px;height:120px;max-height:120px;"><?= !empty($options['theme_ruc_text']) ? $options['theme_ruc_text'] : "" ; ?> </textarea>
+	<?php
+}
+
+
+
+/**
+//TELEFONOS
 add_settings_field( $id, $title, $callback, $page, $section, $args );
 **/
-add_settings_section( PREFIX."_themePage_section_phone" , __( 'Personalizar Teléfonos:' , 'LANG' ), 'custom_settings_section_phone_callback', 'customThemePagePhone' );
+add_settings_section( PREFIX."_themePage_section_phone" , __( 'Personalizar Teléfonos:' , 'LANG' ), 'custom_settings_section_phone_callback', 'customThemePageEmpresa' );
 
 function custom_settings_section_phone_callback()
 { 
@@ -64,7 +88,7 @@ function custom_settings_section_phone_callback()
 }
 
 //TELEFONOS
-add_settings_field( 'theme_phone_text', __( 'Numero Telefono', 'LANG' ), 'custom_phone_render', 'customThemePagePhone', PREFIX."_themePage_section_phone" );
+add_settings_field( 'theme_phone_text', __( 'Numero Telefono', 'LANG' ), 'custom_phone_render', 'customThemePageEmpresa', PREFIX."_themePage_section_phone" );
 //Renderizado 
 function custom_phone_render() 
 { 
@@ -75,7 +99,7 @@ function custom_phone_render()
 }
 
 //TELEFONOS
-add_settings_field( 'theme_phone_text2', __( 'Numero Telefono 2', 'LANG' ), 'custom_phone2_render', 'customThemePagePhone', PREFIX."_themePage_section_phone" );
+add_settings_field( 'theme_phone_text2', __( 'Numero Telefono 2', 'LANG' ), 'custom_phone2_render', 'customThemePageEmpresa', PREFIX."_themePage_section_phone" );
 //Renderizado 
 function custom_phone2_render() 
 { 
@@ -86,15 +110,71 @@ function custom_phone2_render()
 }
 
 //CELULAR
-add_settings_field( 'theme_cel_text', __( 'Numero Celular', 'LANG' ), 'custom_cel_render', 'customThemePagePhone', PREFIX."_themePage_section_phone" );
+add_settings_field( 'theme_cel_text1', __( 'Numero Celular', 'LANG' ), 'custom_cel_render', 'customThemePageEmpresa', PREFIX."_themePage_section_phone" );
 //Renderizado 
 function custom_cel_render() 
 { 
 	$options = get_option( 'theme_settings' ); 
 	?>
-	<input type='text' name='theme_settings[theme_cel_text]' value='<?= !empty($options['theme_cel_text']) ? $options['theme_cel_text'] : "" ; ?>'>
+	<input type='text' name='theme_settings[theme_cel_text][0]' value='<?= !empty($options['theme_cel_text'][0]) ? $options['theme_cel_text'][0] : "" ; ?>'>
 	<?php
 }
+//CELULAR 2
+add_settings_field( 'theme_cel_text2', __( 'Numero Celular 2', 'LANG' ), 'custom_cel2_render', 'customThemePageEmpresa', PREFIX."_themePage_section_phone" );
+//Renderizado 
+function custom_cel2_render() 
+{ 
+	$options = get_option( 'theme_settings' ); 
+	?>
+	<input type='text' name='theme_settings[theme_cel_text][1]' value='<?= !empty($options['theme_cel_text'][1]) ? $options['theme_cel_text'][1] : "" ; ?>'>
+	<?php
+}
+
+
+
+/**
+* SECCION EMAIL 
+**/
+add_settings_section( PREFIX."_themePage_section_email" , __( 'Personalizar Email:' , 'LANG' ), 'custom_settings_section_email_callback', 'customThemePageEmpresa' );
+
+function custom_settings_section_email_callback()
+{ 
+	echo __( 'Coloca email(s) correspondientes', 'LANG' );
+}
+
+//EMAIL
+add_settings_field( 'theme_email_text', __( 'Email Empresa:', 'LANG' ), 'custom_email_render', 'customThemePageEmpresa', PREFIX."_themePage_section_email" );
+//Renderizado 
+function custom_email_render() 
+{ 
+	$options = get_option( 'theme_settings' ); 
+	?>
+	<input type='text' size="50" name='theme_settings[theme_email_text]' value='<?= !empty($options['theme_email_text']) ? $options['theme_email_text'] : "" ; ?>'>
+	<?php
+}
+
+
+/**
+* SECCION UBICACIÓN
+**/
+add_settings_section( PREFIX."_themePage_section_address" , __( 'Personalizar Dirección:' , 'LANG' ), 'custom_settings_section_address_callback', 'customThemePageEmpresa' );
+
+function custom_settings_section_address_callback()
+{ 
+	echo __( 'Coloca dirección correspondiente', 'LANG' );
+}
+
+//DIRECCIÓN
+add_settings_field( 'theme_address_text', __( 'Dirección Empresa:', 'LANG' ), 'custom_address_render', 'customThemePageEmpresa', PREFIX."_themePage_section_address" );
+//Renderizado 
+function custom_address_render() 
+{ 
+	$options = get_option( 'theme_settings' ); 
+	?>
+	<textarea name="theme_settings[theme_address_text]" id="" style="width:350px;height:120px;max-height:120px;"><?= !empty($options['theme_address_text']) ? $options['theme_address_text'] : "" ; ?> </textarea>
+	<?php
+}
+
 
 
 /**
@@ -333,8 +413,54 @@ function custom_text_markup_map_render()
 }
 
 
+//IMAGEN CONTACTO SECCION
+add_settings_section( PREFIX."_themePage_contacto_image" , __( 'Personalizar Contacto Imágen:' , 'LANG' ), 'custom_settings_contacto_image_callback', 'customThemePageContactoMapa' );
+
+function custom_settings_contacto_image_callback()
+{ 
+	echo __( 'Personaliza imágen contacto:', 'LANG' );
+}
+
+//AGREGAR CAMPO DE IMAGEN
+add_settings_field( 'theme_img_contact', __( 'Imágen Contacto:', 'LANG' ), 'custom_image_contact_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto_image" );
+//Renderizado 
+function custom_image_contact_render() 
+{ 
+	$options = get_option( 'theme_settings' ); ?>
+	
+    <!-- Contenedor de Imagen -->
+    <section class="customize-img-container">
+
+        <!-- Input oculto guarda imagen -->
+        <input type="hidden" id="theme_img_contact" class="" name="theme_settings[theme_img_contact]" size="25" value="<?= !empty($options['theme_img_contact']) ? $options['theme_img_contact'] : "" ; ?>" />
+
+        <!-- Contenedor Agregar Imagen Previa -->
+        <div class="container-preview">
+            <?php if( !empty($options['theme_img_contact']) && !is_null($options['theme_img_contact']) ) : ?>
+            <img src="<?= $options['theme_img_contact']; ?>" style="width:100px; height:100px;" />
+            <?php endif ?>
+        </div> 
+        
+        <!-- Botón agregar imágen --> 
+        <br/><button class="js-add-custom-img button button-primary" data-input="theme_img_contact" >
+            <?php empty($options['theme_img_contact']) || is_null($options['theme_img_contact']) ? _e( 'Agregar Imagen' , LANG ) : _e( 'Cambiar Imagen' , LANG ) ; ?>
+        </button> 
+
+        <!-- Botón remover Imagen Oculto -->
+        <button class="js-remove-custom-img button button-primary" data-input="theme_img_contact">
+            <?php _e( 'Remover Imagen' , LANG ); ?>
+        </button>
+
+        <!-- Descripcion -->
+        <br/><p class="description"><?php _e('Subir una imagen para este campo'); ?></p>
+
+    </section> <!-- /.customize-img-container -->
+		
+	<?php
+}
+
 //MAS INFORMACION CONTACTO
-add_settings_field( 'theme_contact_more_info', __( 'Información Contacto:', 'LANG' ), 'custom_contact_more_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto" );
+/*add_settings_field( 'theme_contact_more_info', __( 'Información Contacto:', 'LANG' ), 'custom_contact_more_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto" );
 //Renderizado 
 function custom_contact_more_render() 
 { 
@@ -351,4 +477,4 @@ function custom_contact_more_render()
 	$text_contact = isset($options['theme_contact_more_info']) ? $options['theme_contact_more_info'] : "";
 
 	wp_editor( htmlspecialchars_decode( $text_contact ), 'theme_contact_more_info' , $option_content );
-}
+}*/

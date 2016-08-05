@@ -232,8 +232,12 @@ var j = jQuery.noConflict();
 		j(".js-carousel-indicator").on("click",function(e){
 			e.preventDefault();
 			var slider  = j(this).attr('data-slider');
-			var slideto = j(this).attr('data-to');
+			var slideto = parseInt( j(this).attr('data-to') );
 			j("#"+slider).trigger( 'to.owl.carousel' , [ slideto , 900 ] );
+
+			//Activar elemento
+			j(".js-carousel-indicator").removeClass("active");
+			j(this).addClass("active");
 		});
 
 		/*|----------------------------------------------------------------------|*/

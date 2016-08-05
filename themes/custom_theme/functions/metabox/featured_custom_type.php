@@ -15,7 +15,8 @@ function theme_featured_item_custom_post_type()
 
 	#Array de tipos de post personalizado.
 	$custom_post_types   = array();
-	$custom_post_types[] = "producto-theme";
+    $custom_post_types[] = "producto-theme";
+	$custom_post_types[] = "theme-video";
 
 	add_meta_box( 'mb-featured-custom-post-type', 'Elemento Destacado', 'theme_mb_featured_elements_cb', $custom_post_types , 'side', 'high' );
 }
@@ -49,20 +50,35 @@ function cd_banner_text_save( $post_id )
     if( !current_user_can( 'edit_post' ) ) return;
 
     #Obtener Valor Actual de Metabox 
-    $current_value = get_post_meta( $post_id, 'theme_featured_item_check' , true );
+    $current_value     = get_post_meta( $post_id, 'theme_featured_item_check' , true );
+    
+    #Obtener el tipo de post 
+    $current_post_type = get_post_type( $post_id );
 
-    #SI EL VALOR ACTUAL ESTA EN ON
-    if( $current_value == 'on' ):
+    #SI EL TIPO DE POST ES PRODUCTO THEME
 
-        #Si el post es diferente de vacio
+    if( $current_post_type === "producto-theme" ) :
+
+        #SI EL VALOR ACTUAL ESTA EN ON
+        if( $current_value == 'on' ):
+
+            #Si el post es diferente de vacio
+            $chk = $_POST['theme_featured_item_check'] ? 'on' : 'off';
+            update_post_meta( $post_id, 'theme_featured_item_check', $chk );
+
+        #SI NO HAY VALOR ACTUAL FORZAR A ESTAR EN ON
+        else: 
+
+            update_post_meta( $post_id, 'theme_featured_item_check', 'on' ); 
+
+        endif;
+
+    #SI ES CUALQUIER TIPO 
+    else : 
+        
         $chk = $_POST['theme_featured_item_check'] ? 'on' : 'off';
         update_post_meta( $post_id, 'theme_featured_item_check', $chk );
 
-    #SI NO HAY VALOR ACTUAL FORZAR A ESTAR EN ON
-    else: 
-        update_post_meta( $post_id, 'theme_featured_item_check', 'on' ); 
-
     endif;
      
-
 }

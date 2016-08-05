@@ -19,6 +19,8 @@ function theme_sort_item_custom_post_type()
 	$custom_post_types   = array();
 	$custom_post_types[] = "slider-home";
 	$custom_post_types[] = "producto-theme";
+	$custom_post_types[] = "theme-video";
+	$custom_post_types[] = "theme-marcas";
 
 	add_meta_box( 'mb-sort-custom-post-type', 'Orden de Elementos', 'theme_mb_sort_elements_cb', $custom_post_types , 'side', 'high' );
 }
@@ -286,7 +288,7 @@ function cd_mb_theme_sort_elements_save( $post_id  )
 
 		#Si el valor es igual
 		else: 
-			echo "No cambiado : Mismo valor";
+			#echo "No cambiado : Mismo valor";
 		endif;
 
 	endif;

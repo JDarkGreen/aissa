@@ -44,7 +44,7 @@ function custom_theme_settings_init()
 	//panel redes sociales
 	register_setting( 'customThemePage' , 'theme_settings' );
 	//panel telefonos
-	register_setting( 'customThemePagePhone' , 'theme_settings' );
+	register_setting( 'customThemePageEmpresa' , 'theme_settings' );
 	//panel información Header
 	register_setting( 'customThemePageHeader' , 'theme_settings' );	
 	//panel información Nosotros
@@ -77,7 +77,7 @@ function custom_theme_options_page()
 			<!-- Menu -->
 			<ul class="tabs__menu menu">
                 <li><a href="#"> <?= __("Redes Sociales" , LANG ); ?> </a></li>
-                <li><a href="#"> <?= __("Personalización Teléfonos" , LANG ); ?> </a></li>
+                <li><a href="#"> <?= __("Personalización Empresa" , LANG ); ?> </a></li>
                 <li><a href="#"> <?= __("Personalización Header" , LANG ); ?> </a></li>
                 <li><a href="#"> <?= __("Personalización Nosotros" , LANG ); ?> </a></li>
                 <li><a href="#"> <?= __("Personalización Footer" , LANG ); ?> </a></li>
@@ -99,8 +99,8 @@ function custom_theme_options_page()
             	<!-- PANEL -->
                 <div class="tabdemo__content-item">
                 	<?php
-						settings_fields( 'customThemePagePhone' );
-						do_settings_sections( 'customThemePagePhone' );
+						settings_fields( 'customThemePageEmpresa' );
+						do_settings_sections( 'customThemePageEmpresa' );
 						submit_button();
 					?>
                 </div> <!-- /.tabdemo__content-item -->

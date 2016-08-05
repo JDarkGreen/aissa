@@ -12,7 +12,7 @@ $variation_class = isset($social_variation) && !empty($social_variation) ? $soci
 
 ?>
 
-<ul class="sectionSocialLinks">
+<ul class="sectionSocialLinks <?= $variation_class; ?>">
 	<!-- Facebook -->
 	<?php if( isset($options['theme_social_fb_text']) && !empty($options['theme_social_fb_text'] ) ) : ?>
 		<li> 

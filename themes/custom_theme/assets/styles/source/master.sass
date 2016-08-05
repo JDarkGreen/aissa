@@ -108,7 +108,11 @@ body,html
 /** [ Importar Archivo Secciones Comunes ] **/
 @import "_common.sass"
 
-//Contenedor General Contenido de Páginas
+//Contenedor Contenido de Páginas
+.pageContentLayout
+	padding: 88px 0 0
+
+//Contenedor Layout 
 .pageWrapperLayout
 	margin   : 0 auto 
 	max-width: 1132px
@@ -219,10 +223,53 @@ body,html
 /** [ BOTONERAS ] **/
 .articlePublicity
 	margin: 0 auto 50px
+
+/** [ CONTENEDOR SECCIÓN VIDEO PREVIEW ] **/
+.pageInicio__video__preview
+	overflow: hidden
+	padding : 15px 12px 40px
+	
+	//Botón a Videos
+	a.btntoVideos
+		align-items    : center 
+		color          : black 
+		display        : flex 
+		font-size      : 14px 
+		line-height    : 1em 
+		padding        : 2px 11px 2px 35px 
+		position       : absolute
+		right          : 0 
+		text-decoration: none 
+		//Icon 
+		i 
+			font-size  : 35px 
+			font-weight: 600 
+			margin     : 0 0 0 11px 
 	
 /***************************************************************************************/
 /**--  PAGINA NOSOTROS  --------------------------------------------------------------**/
 /***************************************************************************************/
+
+/** [ ITEM DE NOSOTROS ] **/
+.pageNosotros__item
+	width: 48%
+
+/** [ CONTENIDO ] **/
+.pageNosotros__content
+	margin: 0 0 100px
+
+/** [ ITEM DE APTITUP ] **/
+.pageNosotros__aptitud
+	margin  : 52px auto 0 
+	overflow: hidden
+	//Título 
+	h2 
+		font-size  : 24px
+		font-weight: 600 
+	//Párrafo
+	p 
+		font-size: 14px
+	
 
 
 /***************************************************************************************/
@@ -457,43 +504,7 @@ body,html
 /**--  MAIN FOOTER  ------------------------------------------------------------------**/
 /***************************************************************************************/
 
-//SECCIÓN
-.mainFooter
-	background: linear-gradient(#2C8D63, #09704D)
-	color     : white
-	margin    : 16px auto 0
-	padding   : 20px 0 0
-
-/* Item de Footer contiene informaciones */
-.mainFooter__item
-	height      : 130px 
-	padding     : 0 5%
-	//Titulos
-	h4 
-		font-size  : 14px
-		font-weight: normal	
-		margin     : 0 auto 14px 
-		padding    : 0
-	//Parrafos
-	p 
-		font-size: 12px 
-		margin   : 0 
-
-/** Copyright **/
-.text-copyright
-	font-size : 12px
-	font-style: italic
-	margin    : 10px auto
-
-//++Seccion de Desarrollo
-.mainFooter__develop
-	font-size : 12px 
-	padding   : 15px 0 5px
-	/* Link */
-	a 
-		color: white
-
-
+@import "_footer.sass"
 
 
 /************************************************************************************/

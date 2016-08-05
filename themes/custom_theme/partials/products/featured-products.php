@@ -20,7 +20,7 @@ $args = array(
 		array(
 			'key'     => 'theme_featured_item_check',
 			'value'   => 'on',
-			'compare' => '==',
+			'compare' => '=',
 		),
 	),
 	'meta_key' => 'mb_sort_elements_select',

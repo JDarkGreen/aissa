@@ -9,111 +9,121 @@
 	include( locate_template("partials/common/banner-common-pages.php") ); 
 ?>
 
-<!-- Contenedor Principal -->
-<main class="">
+<!-- Layout de Página -->
+<main class="pageContentLayout">
 	
-	<!-- Contenedor Contenido -->
-	<section class="pageWrapperLayout pageNosotros">
+	<!-- Wrapper de Contenido -->
+	<div class="pageWrapperLayout">
 
-		<!-- Título de Página --> <h2 class="pageSectionCommon__title pageSectionCommon__title--orange text-uppercase"> <?= __(  $post->post_title , LANG ); ?> </h2>
-
-		<!-- Seccion de Contenido y galería -->
-		<section class="pageNosotros__content">
+		<!-- Contenedor Flexible -->
+		<div class="containerFlex containerSpaceBetween">
 			
-			<section class="row">
-				<!-- Contenido -->
-				<div class="col-xs-12 col-md-6">
-					<?= !empty($post->post_content) ? apply_filters("the_content" , $post->post_content  ) : "" ; ?>
-				</div> <!-- /.col-xs-12 col-md-6 -->
-				<!-- Galería -->
-				<div class="col-xs-12 col-md-6">
+			<!-- SECCION DE CONTENIDO -->
+			<section class="pageNosotros__item pageNosotros__content borderGrayBackgroundWhite">
+				
+				<!-- 1.- Contenido de Nosotros -->
+				<section>
+					<?php  
+						#1.- Contenido Nosotros
+						$content_text = $post->post_content;
+						#MOSTRAR
+						echo apply_filters( "the_content" , $content_text );
+					?>
+				</section>
 
-					<!-- Contenedor Relativo -->
-					<section class="containerRelative">
-						<!-- Contenedor de Galería [ ] -->
-						<?php  
-							/*
-							*  Attributos disponibles 
-							* data-items = number , data-items-responsive = number_mobile ,
-							* data-margins = margin_in_pixels , data-dots = true or false 
-							*data autoplay = true or false
-							*/
-						?>
+				<!-- 2.- Item Visión -->
+				<div class="pageNosotros__aptitud">
+					<!-- Titulo --> <h2 class="text-uppercase"><?= __( "visión" , LANG ); ?></h2>
+					<!-- Contenido -->
+					<?php 
+						if( isset($options["theme_vision"]) && !empty($options["theme_vision"]) ) :
+							echo apply_filters( "the_content" , $options["theme_vision"] );
+						endif; 
+					?>
+				</div> <!-- /. -->
 
-						<div id="carousel-nosotros" class="section__single_gallery js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="false" data-autoplay="true">
-							<!-- Obtener todas las habitaciones -->
-							<?php  
-								$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
-								//convertir en arreglo
-								$input_ids_img  = explode(',', $input_ids_img ); 
-								//Eliminar numeros negativos
-								$remove_array   = array(-1);
-								$input_ids_img  = array_diff( $input_ids_img , $remove_array ); 
+				<!-- 2.- Item Misión -->
+				<div class="pageNosotros__aptitud">
+					<!-- Titulo --> <h2 class="text-uppercase"><?= __( "misión" , LANG ); ?></h2>
+					<!-- Contenido -->
+					<?php 
+						if( isset($options["theme_mision"]) && !empty($options["theme_mision"]) ) :
+							echo apply_filters( "the_content" , $options["theme_mision"] );
+						endif; 
+					?>
+				</div> <!-- /. -->
 
-								//Hacer loop por cada item de arreglo
-								foreach ( $input_ids_img as $item_img ) : 
-									//Si es diferente de null o tiene elementos
-									if( !empty($item_img) ) : 
-									//Conseguir todos los datos de este item
-									$item = get_post( $item_img  ); 
-							?> <!-- Artículo -->
-								<article class="item-nosotros relative">
-									<!-- Imagen fancybox -->
-									<a href="<?= $item->guid; ?>" class="gallery-fancybox">
-										<figure><img src="<?= $item->guid; ?>" alt="<?= $item->post_title; ?>" class="img-fluid" /></figure>
-									</a> <!-- /.gallery-fancybox -->
-								</article> <!-- /.item-nosotros -->
+			</section> <!-- /.pageNosotros__item -->
 
-							<?php endif; endforeach; ?>
-						</div> <!-- /.section__single_gallery -->
+			<!-- SECCION DE GALERÍA -->
+			<section class="pageNosotros__item containerRelative">
+				
+				<!-- Contenedor de Galería [ ] -->
+				<?php  
+					/*
+					*  Attributos disponibles 
+					* data-items = number , data-items-responsive = number_mobile ,
+					* data-margins = margin_in_pixels , data-dots = true or false 
+					*data autoplay = true or false
+					*/
+				?>
 
-						<!-- Flechas de Carousel Ocultar en mobile -->
-						<div class="text-xs-center hidden-xs-down">
-							<!-- Flecha Izquierda -->
-							<a href="#" id="" class="js-carousel-prev arrowCarouselNosotros arrowCarouselNosotros-prev" data-slider="carousel-nosotros">
-								<i class="fa fa-arrow-left" aria-hidden="true"></i>
-							</a>							
-							<!-- Flecha Derecha -->
-							<a href="#" id="" class="js-carousel-next arrowCarouselNosotros arrowCarouselNosotros-next" data-slider="carousel-nosotros">
-								<i class="fa fa-arrow-right" aria-hidden="true"></i>
-							</a>
-						</div> <!-- /.text-xs-center  -->	
+				<div id="carousel-nosotros-theme" class="section__single_gallery js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="true" data-autoplay="true">
+					<!-- Obtener todas las habitaciones -->
+					<?php  
+						$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
+						//convertir en arreglo
+						$input_ids_img  = explode(',', $input_ids_img ); 
+						//Eliminar numeros negativos
+						$remove_array   = array(-1,'-1');
+						$input_ids_img  = array_diff( $input_ids_img , $remove_array ); 
+						$input_ids_img  = array_filter( $input_ids_img );
 
-					</section> <!-- /.relative -->	
+						//Hacer loop por cada item de arreglo
+						foreach ( $input_ids_img as $item_img ) : 
+							//Si es diferente de null o tiene elementos
+							if( !empty($item_img) ) : 
+							//Conseguir todos los datos de este item
+							$item = get_post( $item_img  ); 
+					?> <!-- Artículo -->
+						<article>
+							<!-- Imagen fancybox -->
+							<a href="<?= $item->guid; ?>" class="gallery-fancybox">
+								<figure><img src="<?= $item->guid; ?>" alt="<?= $item->post_title; ?>" class="img-fluid" /></figure>
+							</a> <!-- /.gallery-fancybox -->
+						</article> <!-- /.item-nosotros -->
 
-				</div> <!-- /.col-xs-12 col-md-6 -->			
-			</section> <!-- /.row -->
-			
-		</section> <!-- /.pageNosotros__content -->
+					<?php endif; endforeach; ?>
+				</div> <!-- /.section__single_gallery -->
+
+				<!-- Indicadores de Galería - Personalizado -->
+				<section class="gallery_indicators text-xs-center">
+					<?php 	
+						$control = 0;
+						foreach ( $input_ids_img as $item_img ) :  
+					?>
+						<a href="#" data-slider="carousel-nosotros-theme" data-to="<?= $control; ?>" class="gallery_indicator js-carousel-indicator <?= $control == 0 ? 'active' : ''  ?>"></a>
+
+					<?php $control++; endforeach; ?>
+				</section> <!-- /.gallery_indicators -->
+				
+			</section> <!-- /.pageNosotros__item -->
+
+		</div> <!-- /.containerFlex containerSpaceBetween -->
+
+		<!-- 2.- NUESTRAS MARCAS -->
+		<?php  
+			include( locate_template("partials/common/section-marcas-empresa.php") );
+		?>
+
+		<?php  
+			/**
+			** Incluir Plantilla de Catálogo
+			**/
+			include( locate_template("partials/common/section-catalogo-empresa.php") );
+		?>
 		
-		<!-- 2.- Sección Aptitudes -->
-		<section class="pageNosotros__aptitudes containerFlex">
-
-			<!-- 2.1 MISION -->
-			<?php if( isset($options['theme_mision']) && !empty($options['theme_mision']) ) : ?>
-			<article class="pageNosotros__item pageNosotros__mision bgGreenSemiOscuro">
-				<!-- Título --> <h3 class="text-capitalize"><?php _e( "misión" , LANG ); ?></h3>	
-				<!-- Contenido --> 
-				<div class="text-content">
-					<?= apply_filters("the_content" , $options['theme_mision'] ); ?>
-				</div> <!-- /.text-content -->
-			</article> <!-- /.pageNosotros__aptitudes__item -->
-			<?php endif; ?>			
-
-			<!-- 2.2 VISION -->
-			<?php if( isset($options['theme_vision']) && !empty($options['theme_vision']) ) : ?>
-			<article class="pageNosotros__item bgOrangeDark">
-				<!-- Título --> <h3 class="text-capitalize"><?php _e( "visión" , LANG ); ?></h3>	
-				<!-- Contenido --> 
-				<div class="text-content">
-					<?= apply_filters("the_content" , $options['theme_vision'] ); ?>
-				</div> <!-- /.text-content -->
-			</article> <!-- /.pageNosotros__aptitudes__item -->
-			<?php endif; ?>
-
-		</section> <!-- /.container -->
-
-	</section> <!-- /.pageWrapper__content -->
+	</div> <!-- /.pageWrapperLayout -->
 
 </main> <!-- /.pageWrapper -->
 

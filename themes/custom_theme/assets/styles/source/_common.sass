@@ -39,6 +39,9 @@ img.aligncenter, img.alignright, img.alignleft
 .containerAlignContent
 	align-content: center
 	align-items  : center
+// ===> Alineación de Contenido spacios <====
+.containerSpaceBetween
+	justify-content: space-between
 
 /***************************************************************************************/
 /**-- 1.2 FLECHAS DE SLIDER  ---------------------------------------------------------**/
@@ -61,14 +64,19 @@ img.aligncenter, img.alignright, img.alignleft
 	figure 
 		background-size: cover 
 		height         : 164px 
+		margin         : 0 auto 
 //Título
 .pageCommon__banner__title
-	font-size  : 35px
-	font-weight: 700
-	left       : 5%
-	margin     : -16px auto 0	
+	background : #231F16
+	color      : white
+	font-size  : 33px
+	line-height: 1em
+	margin     : -50px auto 0
+	padding    : 10px 40px
 	position   : absolute
+	right      : 20%
 	top        : 50%
+
 //Banner de Servicios
 .sectionCommon__banner__services
 	color      : white 	
@@ -86,7 +94,8 @@ img.aligncenter, img.alignright, img.alignleft
 /***************************************************************************************/
 //++ Botón Ver Más
 .btnCommon__show-more
-	+transition( all 500ms ease-in-out )
+	+box-shadow( inset 0 0 0 0 transparent )
+	+transition( all 800ms ease-in-out )
 	border     : 1px solid black 
 	color      : black 
 	font-size  : 14px 
@@ -94,12 +103,13 @@ img.aligncenter, img.alignright, img.alignleft
 	padding    : 7px 11px
 	//hover y focus
 	&:hover , &:focus
-		color          : black 
+		color          : white 
 		outline        : 0px !important
 		text-decoration: none 
 	//hover 
 	&:hover 
-		+scale( 1.1 )
+		+box-shadow( inset 150px 0 0 0 #E421BB )
+
 // VARIACIONES 
 
 //BOTÓN HACIA ARRIBA 
@@ -129,6 +139,12 @@ img.aligncenter, img.alignright, img.alignleft
 	margin             : 0 auto 15px 
 	padding            : 0 0 25px 
 
+//Titulo Subseccion
+.titleCommon__subsection
+	font-size  : 25px
+	font-weight: 600
+	margin     : 0 auto 15px	
+
 /***************************************************************************************/
 /**-- 1.6 REDES SOCIALES -------------------------------------------------------------**/
 /***************************************************************************************/
@@ -145,11 +161,23 @@ img.aligncenter, img.alignright, img.alignleft
 			+border-radius( 50% )
 			display   : block
 			font-size : 20px
+			height    : 30px
 			height    : auto
-			width     : 25px
+			text-align: center
+			width     : 30px
+			//Icons
+			i 
+				color: #E421BB
+
 			//Hover
 			&:hover 
-				animation: expand 800ms ease infinite 
+				animation: expand 800ms ease infinite
+
+//+VARIACION SOCIAL LINKS
+.sectionSocialLinks--white
+	li 
+		a 
+			background: white 	
 
 //COMPARTIR REDES SOCIALES
 .sectionCommon__social-links
@@ -203,13 +231,25 @@ img.aligncenter, img.alignright, img.alignleft
 
 //Indicadores de Galería
 .gallery_indicators
-	margin: 0 auto 30px 
+	margin: 15px auto 0 
 	//Indicador
 	.gallery_indicator
+		+border-radius( 50% )
+		+transition( all 500ms ease-in )
+		background     : #343434 
 		display        : inline-block
-		margin         : 0 4.5px 
-		max-width      : 131px 
+		height         : 15px 
+		margin         : 0 4px 
 		text-decoration: none 
+		width          : 15px
+		//Activo u hover
+		&:hover , &.active 
+			background: #E421BB
+
+//Carousel Simple
+.section__single_gallery
+	figure 
+		margin: 0 auto
 
 /***************************************************************************************/
 /**-- 1.9 SEPARADORES ----------------------------------------------------------------**/
@@ -288,11 +328,10 @@ img.aligncenter, img.alignright, img.alignleft
 	/* Artículos */
 	.articleItem
 		color      : black 
-		font-family: "Raleway" , sans-serif
-		margin     : 0 auto 40px
+		margin     : 0 auto 34px
 		/* Imagen */
 		figure 
-			margin   : 0 auto 20px
+			margin   : 0 auto
 			overflow : hidden
 			img 
 				+transition( all 3s ease-in )
@@ -304,7 +343,8 @@ img.aligncenter, img.alignright, img.alignleft
 			overflow : hidden
 		/* Parrafo */
 		p 
-			line-height: 1.2em 
+			font-size  : 14px
+			line-height: 1.4em 
 			/* Link del post */
 			a.read-more
 				display        : inline-block
@@ -332,3 +372,49 @@ img.aligncenter, img.alignright, img.alignleft
 		//HOVER AND ACTIVE 
 		&:hover , &.active 
 			color: #C500AE
+
+
+/***************************************************************************************/
+/**-- 1.13 MENU DE DATOS -------------------------------------------------------------**/
+/***************************************************************************************/
+
+.menuDataList
+	list-style-type: none 
+	margin         : 0 auto 30px 
+	padding        : 0 0 0 35px
+	li 
+		display  : flex
+		i 
+			height: 20px 
+			margin: 0 6px 0 -30px
+			width : 20px 
+
+/***************************************************************************************/
+/**-- 1.14 SECCIÓN DE MARCAS ---------------------------------------------------------**/
+/***************************************************************************************/
+
+.sectionCommun__marcas__content
+	//Item
+	.itemMarca
+		margin    : 0 0 15px 
+		max-height: 235px
+		overflow  : hidden
+		width     : 28%
+		//Párrafos
+		p 
+			font-size: 14px 
+
+/***************************************************************************************/
+/**-- 1.15 SECCIÓN CATÁLOGO DE EMPRESA  ----------------------------------------------**/
+/***************************************************************************************/
+
+.sectionCommon__catalogo
+	background: #EDE1D7
+	margin    : 40px 0 
+	padding   : 14px 45px
+	//Título
+	h2 
+		margin: 0 auto 22px
+	//Imagen
+	figure 
+		margin: 0

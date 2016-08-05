@@ -80,11 +80,65 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-cart',
 	);
 
+	/*|>>>>>>>>>>>>>>>>>>>> GALERÍA VIDEOS  <<<<<<<<<<<<<<<<<<<<|*/
+	
+	$labels_video = array(
+		'name'               => __('Gal. Videos'),
+		'singular_name'      => __('Video'),
+		'add_new'            => __('Nuevo Video'),
+		'add_new_item'       => __('Agregar nuevo Video'),
+		'edit_item'          => __('Editar Video'),
+		'view_item'          => __('Ver Video'),
+		'search_items'       => __('Buscar Videos'),
+		'not_found'          => __('Video no encontrado'),
+		'not_found_in_trash' => __('Video no encontrado en la papelera'),
+	);
+
+	$args_videos = array(
+		'labels'      => $labels_video,
+		'has_archive' => true,
+		'public'      => true,
+		'hierachical' => false,
+		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
+		'show_ui' => true,
+		'taxonomies'  => array( 'post_tag' ),
+		'menu_icon'   => 'dashicons-video-alt3',
+	);
+
+	/*|>>>>>>>>>>>>>>>>>>>> MARCAS  <<<<<<<<<<<<<<<<<<<<|*/
+	
+	$labels_marca = array(
+		'name'               => __('Marcas'),
+		'singular_name'      => __('Marca'),
+		'add_new'            => __('Nueva Marca'),
+		'add_new_item'       => __('Agregar nueva Marca'),
+		'edit_item'          => __('Editar Marca'),
+		'view_item'          => __('Ver Marca'),
+		'search_items'       => __('Buscar Marca'),
+		'not_found'          => __('Marca no encontrado'),
+		'not_found_in_trash' => __('Marca no encontrado en la papelera'),
+	);
+
+	$args_marcas = array(
+		'labels'      => $labels_marca,
+		'has_archive' => true,
+		'public'      => true,
+		'hierachical' => false,
+		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
+		'show_ui' => true,
+		'taxonomies'  => array( 'post_tag' ),
+		'menu_icon'   => 'dashicons-vault',
+	);
+
 
 	/*|>>>>>>>>>>>>>>>>>>>> REGISTRAR  <<<<<<<<<<<<<<<<<<<<|*/
 	register_post_type( 'slider-home' , $args  );
 	register_post_type( 'servicio' , $args2 );
 	register_post_type( 'producto-theme' , $args3 );
+	#Galería Videos
+	register_post_type( 'theme-video' , $args_videos );	
+	#Marcas
+	register_post_type( 'theme-marcas' , $args_marcas );
 
 	flush_rewrite_rules();
 }
