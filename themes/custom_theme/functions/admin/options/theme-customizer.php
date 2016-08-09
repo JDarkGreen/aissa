@@ -53,6 +53,8 @@ function custom_theme_settings_init()
 	register_setting( 'customThemePageFooter' , 'theme_settings' );
 	//panel contacto mapa
 	register_setting( 'customThemePageContactoMapa' , 'theme_settings' );
+	//panel rewrite url
+	register_setting( 'customThemeRewriteUrl' , 'theme_settings' );
 
 	/**
 	* Incluir archivo de Configuracion de Secciones y campos , inputs y texarea
@@ -82,6 +84,7 @@ function custom_theme_options_page()
                 <li><a href="#"> <?= __("Personalización Nosotros" , LANG ); ?> </a></li>
                 <li><a href="#"> <?= __("Personalización Footer" , LANG ); ?> </a></li>
                 <li><a href="#"> <?= __("Personalización Contacto - Mapa" , LANG ); ?> </a></li>
+                <li><a href="#"> <?= __("Customizar Url" , LANG ); ?> </a></li>
             </ul> <!-- /. -->
 
             <!-- CONTENEDOR GENERAL DE PANEL -->
@@ -137,6 +140,15 @@ function custom_theme_options_page()
                 	<?php
 						settings_fields( 'customThemePageContactoMapa' );
 						do_settings_sections( 'customThemePageContactoMapa' );
+						submit_button();
+					?>
+                </div> <!-- /.tabdemo__content-item -->
+
+            	<!-- PANEL  REWRITE URL -->
+                <div class="tabdemo__content-item">
+                	<?php
+						settings_fields( 'customThemeRewriteUrl' );
+						do_settings_sections( 'customThemeRewriteUrl' );
 						submit_button();
 					?>
                 </div> <!-- /.tabdemo__content-item -->

@@ -478,3 +478,75 @@ function custom_contact_more_render()
 
 	wp_editor( htmlspecialchars_decode( $text_contact ), 'theme_contact_more_info' , $option_content );
 }*/
+
+
+
+//SECCIÓN CUSTOM URL
+add_settings_section( PREFIX."_themePage_rewriteurl" , __( 'Personalizar Url:' , 'LANG' ), 'custom_settings_rewrite_url_callback', 'customThemeRewriteUrl' );
+
+function custom_settings_rewrite_url_callback()
+{ 
+	echo __( 'Personaliza Url de Taxonomías:', 'LANG' );
+}
+
+//SECCIÓN DE SOBREESCRIBIR SLUG TAXONOMÍAS
+
+add_settings_field( 'theme_rewriteurl', __( 'Customizar Url:', 'LANG' ), 'theme_rewriteurl_render', 'customThemeRewriteUrl', PREFIX."_themePage_rewriteurl" );
+//Renderizado 
+function theme_rewriteurl_render() 
+{ 
+	$options        = get_option( 'theme_settings' ); 
+	#todas las taxonomias
+	$all_taxonomies = get_taxonomies();
+	#excluir taxonomias
+	$exclude_tax    =  array("post_tag","nav_menu","link_category","post_format","wpmf-category");
+	#solo quedar con las taxonomias necesarias
+	$all_taxonomies = array_diff( $all_taxonomies , $exclude_tax );
+?>
+	<h3> TAXONOMÍAS PERSONALIZADAS </h3>
+
+	<table>
+		<?php foreach( $all_taxonomies as $tax ) : 
+			#var_dump( get_taxonomy( $tax ) );
+		?>
+		<tr>
+			<td> <label><b> <?= $tax ?> </b></label> </td>
+			<td> 
+				<input type='text' name='theme_settings[theme_rewriteurl][<?= $tax ?>]' value='<?= !empty($options['theme_rewriteurl'][$tax]) ? $options['theme_rewriteurl'][$tax] : $tax; ?>'>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</table> 
+
+	<h3> TIPOS DE POSTS </h3>
+
+	<?php 
+		#Obtener todos los custom post type
+		$args = array(
+			'public'   => true,
+			'_builtin' => false
+		);
+			
+		$output     = 'names'; // names or objects, note names is the default
+		$operator   = 'and'; // 'and' or 'or'
+		#Todos los tipos de posts
+		$custom_post_types = get_post_types( $args, $output, $operator );
+	?>
+
+	<table>
+		<?php foreach( $custom_post_types as $post_type ) : 
+			#var_dump( get_taxonomy( $tax ) );
+		?>
+		<tr>
+			<td> <label><b> <?= $post_type ?> </b></label> </td>
+			<td> 
+				<input type='text' name='theme_settings[theme_rewriteurl][<?= $post_type ?>]' value='<?= !empty($options['theme_rewriteurl'][$post_type]) ? $options['theme_rewriteurl'][$post_type] : $post_type; ?>'>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</table> 
+
+<?php
+	
+
+}

@@ -25,6 +25,11 @@ require_once("admin/custom-scripts.php");
 require_once('functions/admin/options/theme-customizer.php');
 
 /**
+* Customizar Urls
+**/
+require_once('functions/admin/rewrite/rewrite_slug.php');
+
+/**
 * Agregar nuevas columnas 
 **/
 require_once('functions/admin/custom/new-columns.php');
