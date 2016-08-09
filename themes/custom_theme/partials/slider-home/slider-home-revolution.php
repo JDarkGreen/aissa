@@ -26,7 +26,7 @@
 
 	<!-- Contenedor Wrapper for sliders -->
 	<section id="carousel-home" class="pageInicio__slider containerRelative">
-		<ul class="">
+		<ul>
 		<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
 			<?php
