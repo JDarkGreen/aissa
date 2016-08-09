@@ -1,15 +1,29 @@
 
-<!-- Si existe el post  -->
-<?php if( isset($banner) ) : ?>
+<!-- Si existe el post u objecto -->
+<?php if( isset($banner) || isset($banner_object) ) : ?>
 	
 	<!-- BANNER DE LA PAGINA -->
 	<section class="pageCommon__banner relative">
 		<!-- Conseguir el banner por defecto -->
 		<?php 
-			$img_banner = get_post_meta ($banner->ID, 'input_img_banner_'.$banner->ID , true); 
-			if( empty($img_banner) || $img_banner == -1 ) {
-				$img_banner = "https://placeimg.com/1920/237/any";
-			}
+			#Si es un post 
+			if( isset($banner) ) :
+
+				#Obtenemos el campo personalizado img banner
+				$img_banner = get_post_meta ($banner->ID, 'input_img_banner_'.$banner->ID , true);
+
+				#Si está vacio o tiene un número negativo entonces seteamos imágen al azar
+				if( empty($img_banner) || $img_banner == -1  ) :
+					$img_banner = "https://placeimg.com/1920/237/any";
+				endif; 
+
+			#Si existe el objeto banner object
+			elseif( isset($banner_object) ) :
+				
+				$img_banner = !empty($banner_object) ? $banner_object : "https://placeimg.com/1920/237/any";
+
+			endif;
+
 		?>
 		<figure style='background-image: url("<?= $img_banner; ?>")'>
 			<!--img src="<?= $img_banner ?>" alt="banner-nosotros-empresa-tributary" class="img-fluid hidden-xs-down" /-->

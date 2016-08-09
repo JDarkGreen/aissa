@@ -101,12 +101,12 @@ function theme_add_banner_image( $value_image = "" )
                 
                 <!-- Separación --> <p></p>
                 <!-- Botón agregar imágen --> 
-                <button id="js-add-img-tax" class="js-add-img-tax button button-primary" data-class-img="banner" data-input="term_meta[theme_tax_banner_img_<?= $t_id; ?>]" >
+                <button id="js-add-img-tax" class="js-add-custom-img button button-primary" data-class-img="banner" data-input="theme_tax_banner_img" >
                     <?php empty($value_image) || is_null($value_image) ? _e( 'Agregar Imagen' , LANG ) : _e( 'Cambiar Imagen' , LANG ) ; ?>
                 </button> 
 
                 <!-- Botón remover Imagen Oculto -->
-                <button id="js-remove-img-tax" class="js-remove-img-tax button button-primary" data-class-img="banner">
+                <button id="js-remove-img-tax" class="js-remove-custom-img button button-primary" data-input="theme_tax_banner_img">
                     <?php _e( 'Remover Imagen' , LANG ); ?>
                 </button> 
 
@@ -151,12 +151,12 @@ function theme_add_image( $value_image = "" )
                 
                 <!-- Separación --> <p></p>
                 <!-- Botón agregar imágen --> 
-                <button id="js-add-img-tax" class="js-add-img-tax button button-primary" data-class-img="image" data-input="term_meta[theme_tax_img_<?= $t_id; ?>]" >
+                <button id="js-add-img-tax" class="js-add-custom-img button button-primary" data-input="theme_tax_img">
                     <?php empty($value_image) || is_null($value_image) ? _e( 'Agregar Imagen' , LANG ) : _e( 'Cambiar Imagen' , LANG ) ; ?>
                 </button> 
 
                 <!-- Botón remover Imagen Oculto -->
-                <button id="js-remove-img-tax" class="js-remove-img-tax button button-primary" data-class-img="image">
+                <button id="js-remove-img-tax" class="js-remove-custom-img button button-primary" data-input="theme_tax_img">
                     <?php _e( 'Remover Imagen' , LANG ); ?>
                 </button> 
 
