@@ -418,3 +418,43 @@ img.aligncenter, img.alignright, img.alignleft
 	//Imagen
 	figure 
 		margin: 0
+
+/***************************************************************************************/
+/**-- 1.16 SECCIÓN COMPARTIR DE CADA POST O ELEMENTO  --------------------------------**/
+/***************************************************************************************/
+
+.sectionCommonShareLinks
+	margin: 50px auto 0
+	ul 
+		list-style-type: none 
+		margin         : 0
+		padding        : 0
+		li 
+			display: inline-block
+			padding: 0 2px
+			//Primer Elemento
+			&:first-child
+				font-size: 15px 
+				padding  : 0 10px 0 0
+			//Item - a 
+			a 
+				background     : #E3E8E9 
+				color          : #A6A6A8
+				height         : 21px 
+				justify-content: center  
+				text-decoration: none 
+				width          : 21px
+				+transition( all 500ms ease-in-out )
+				//Hover
+				&:hover
+					color: white
+				//Clases Internas
+				&.social--fb
+					&:hover 
+						background: #11539C
+				&.social--tw
+					&:hover 
+						background: #00ACED
+				&.social--gplus
+					&:hover 
+						background: #DB4A39
