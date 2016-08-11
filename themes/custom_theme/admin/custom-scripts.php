@@ -32,6 +32,9 @@ function load_admin_custom_enqueue() {
 	**/
 	wp_enqueue_style( 'options-theme-style', THEMEROOT . "/functions/admin/options/style-options.css" );
 
+	//cargar elementos dinámicamente
+	wp_enqueue_script('wp-js-add-elements-dynamic', THEMEROOT . '/admin/js/elements-dynamic.js', array('jquery'), '', true);
+
 }
 
 add_action('admin_enqueue_scripts', 'load_admin_custom_enqueue');

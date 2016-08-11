@@ -25,7 +25,7 @@ $options = get_option( 'theme_settings' );
 				<article class="mainFooter__item text-xs-center">
 
 					<!-- Logo -->
-					<h1> Aissa Secret </h1>
+					<h1 class="logo"> Aissa Secret </h1>
 					<!-- Link web -->
 					<a class="text-web" href="<?= site_url(); ?>"> www.aissa.com.pe </a>
 

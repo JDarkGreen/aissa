@@ -76,6 +76,9 @@ include( locate_template("partials/slider-home/slider-home-revolution.php") );
 			<div class="col-xs-12 col-sm-4">
 				<aside class="sidebarCommon">
 					<?php  
+						#Incluir variable para setear todos los menús
+						$all_select_menu = "all_select_menu";
+
 						#Incluir Plantilla Sidebar
 						include( locate_template("partials/common/sidebar-common.php") );
 					?>

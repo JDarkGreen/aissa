@@ -60,11 +60,19 @@ $options = get_option("theme_settings");
 
 				#Mostrar titulo
 				$cat_parent = get_term( $id_cat_parents , $tax_product_cat ); 
+
+				#Si existe la variable all select menu 
+				# que marca todos los items como activos 
+				if( !isset( $all_select_menu ) ) :
+					$all_select_menu = "";
+				endif;
 		?>
 			<!-- Lista de Productos -->
-			<ul class="productList__menu">
-
-				<li><a href="#" class="text-uppercase colorPurple"> <?= $cat_parent->name; ?> </a></li>
+			<ul class="productList__menu <?= $all_select_menu; ?>">
+				
+				<li>
+					<a href="#" class="text-uppercase colorPurple"> <?= $cat_parent->name; ?> </a>
+				</li>
 		<?php
 
 				#Obtener y mostrar las categorías Hijo
@@ -79,8 +87,14 @@ $options = get_option("theme_settings");
 				);
 				#Hacer Recorrido
 				foreach( $child_products_cats as $child_cat ):
+		
+					#Comparar si elemento está activo
+					$current_element = isset($id_current_element) && $id_current_element == $child_cat->term_id ? "active" : "";
 		?>
-					<li><a href="<?= get_term_link( $child_cat ); ?>" class="colorPurple"> <?= $child_cat->name; ?> </a></li>
+					<li class="<?= $current_element; ?>">
+						<a href="<?= get_term_link( $child_cat ); ?>" class="colorPurple"> <?= $child_cat->name; ?> 
+						</a>
+					</li>
 
 		<?php endforeach; ?>
 			</ul> <!-- /.productList__menu -->

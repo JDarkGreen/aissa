@@ -46,6 +46,13 @@ else :
 
 endif;
 
+
+/**
+* Setear ID DE ELEMENTO HIJO para comparar ID de menú activo o current
+*/
+
+$id_current_element = $first_child_element->term_id;
+
 ?>
 
 
@@ -56,7 +63,9 @@ endif;
 	<div class="pageWrapperLayout">
 
 		<!-- Título Elemento -->
-		<h2 class="text-uppercase"><?= $first_child_element->name; ?></h2>
+		<h2 class="text-uppercase titleCommon__category colorPurple">
+			<?= $first_child_element->name; ?>
+		</h2>
 
 		<!-- Contenedor Filas -->
 		<div class="row">
@@ -162,7 +171,15 @@ endif;
 						</div> <!-- /.row -->
 					</article> <!-- /.productoItemPreview -->
 
-				<?php endwhile; endif; wp_reset_postdata(); ?>
+				<?php endwhile; ?>
+
+				<?php else: ?>
+
+					<h2 class="text-uppercase titleCommon__category colorPurple">
+						<?= __("No disponible temporalmente. Puede visitar otras líneas de producto. Gracias" , "LANG"); ?>
+					</h2>
+
+				<?php endif; wp_reset_postdata(); ?>
 				
 			</div> <!-- col-xs-12 col-sm-8 -->
 			

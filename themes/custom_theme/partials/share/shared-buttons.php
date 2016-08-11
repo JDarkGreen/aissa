@@ -24,7 +24,7 @@
 		
 		<!-- Twitter -->
 		<li>
-			<a href="javascript:window.open('https://twitter.com/intent/tweet?text=<?= '!Hola! éste contenido me pareció interesante: ' . $feat_img; ?>' , '_blank' , 'width=400 , height=500' ); void(0);" class="containerFlex containerAlignContent social--tw">
+			<a href="javascript:window.open('https://twitter.com/intent/tweet?text=<?= '!Hola! éste contenido me pareció interesante: ' . $link_share; ?>' , '_blank' , 'width=400 , height=500' ); void(0);" class="containerFlex containerAlignContent social--tw">
 				<i class="fa fa-twitter" aria-hidden="true"></i>
 			</a>	
 		</li>

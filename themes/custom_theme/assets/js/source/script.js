@@ -116,12 +116,12 @@ var j = jQuery.noConflict();
 
     	// Setear revolution slider
 		var api_rev = j("#carousel-home").revolution({
-			delay           : 6000, 
+			delay           : 6500, 
 			fullWidth       : "on",
 			navigationArrows: "none",
 			navigationType  : 'none', // use none, bullet or thumb
 			onHoverStop     : "off",
-			startheight     : 386,
+			startheight     : 420,
 		}); 
 
 		// Eventos para flechas

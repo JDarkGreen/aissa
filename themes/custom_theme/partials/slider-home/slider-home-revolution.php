@@ -43,20 +43,20 @@
 				<?php endif; ?>
 
 				<!-- Caption Titulo y contenido -->
-				<div class="caption sft big_white" data-x="50" data-y="67" data-speed="3000" data-start="900" data-easing="easeOutBack">
+				<div class="caption sft big_white" data-x="480" data-y="67" data-speed="3000" data-start="900" data-easing="easeOutBack">
 					<section class="pageInicio__slider__content">
-						<h2 class="">
+						<h2 class="text-uppercase">
 							<?php _e( get_the_title() , LANG ); ?>
 						</h2> <!-- /.pageInicio__slider__title -->
 					</section> <!-- /.pageInicio__slider__content -->
 				</div> <!-- /.caption sft big_white -->	
 
-								<!-- Meta Contenido - Información Adicional -->
-				<div class="caption sft big_white" data-x="50" data-y="197" data-speed="3000" data-start="2000" data-easing="easeInBack">
+				<!-- Meta Contenido - Información Adicional -->
+				<div class="caption sft big_white" data-x="415" data-y="180" data-speed="3000" data-start="2000" data-easing="easeOutBack">
 					<!-- Meta Contenido - Información Adicional -->
 					<div class="pageInicio__slider__content pageInicio__slider__meta-content">
 						<!-- Contenido del Slider  -->
-						<p class="text-capitalize">
+						<p class="text-uppercase colorPurple">
 							<?php _e( get_the_content() , LANG ); ?>
 						</p> <!-- /.pageInicio__slider__content -->
 						

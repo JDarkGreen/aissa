@@ -59,7 +59,7 @@
 			include( locate_template("partials/social-network/social-links.php") );
 		?>
 
-		<div class="row">
+		<div class="row mainHeader__content">
 
 			<!-- Logo -->
 			<div class="col-md-5 offset-md-3">
