@@ -80,12 +80,12 @@ function cd_mb_colors_product_cb( $post )
 
         <!--
             Data input keys
-            dividido por comas 
-            y a su vez dividido en tres secciones 
+            dividido por comas  ,
+            y a su vez dividido en tres secciones por el simbolo |
             1.-key 2.- placeholder - 3.- class
         -->
 
-        <a href="#" class="js-add-element-dynamic" data-input-name="mb_colors_product" data-input-keys="text * Escribe color * text  , color * #000000 * js-add-theme-color " data-last-element="<?= count($new_array_colors) ?>"> Agregar Color </a>
+        <a href="#" class="js-add-element-dynamic" data-input-name="mb_colors_product" data-input-keys="text | Escribe color | text  , color | #000000 | js-add-theme-color " data-last-element="<?= count($new_array_colors) ?>"> Agregar Color </a>
     
     </div> <!-- /.container-colors-products --> 
     <?php    

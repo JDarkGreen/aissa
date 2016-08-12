@@ -42,7 +42,7 @@ var j = jQuery.noConflict();
 				{
 					//Hacer división aquí
 					// Valores 1.- name , 2.- placeholder , 3- clase
-					var temp_array = $this_input_keys[i].trim().split("*");
+					var temp_array = $this_input_keys[i].trim().split("|");
 
 					//Setear en array general 
 					array_keys[i] = { 
