@@ -24,7 +24,37 @@ var j = jQuery.noConflict();
 				//Ultimo elemento que conto - numero + 1
 				$last_element_count = parseInt( $this_button.attr("data-last-element") );
 				$last_element_count = $last_element_count !== 0 ? $last_element_count + 1 : 0;
+
+				//Nombre del input a setear eg. mb_colors_product 
+				$this_input_name = $this_button.attr("data-input-name");
 				 
+				//Nombre de las keys a setear puedes ser más de uno pero como 
+				//mínimo debe ser uno , está separado por comas.
+				$this_input_keys = $this_button.attr("data-input-keys");
+				$this_input_keys = $this_input_keys.split(",");
+
+				//Crear un array general que almacene todos los keys
+				var array_keys  = {};
+
+				//Hacer la division a su vez en elementos que tengan
+				//Un nombre un placeholder y una clase 
+				for ( var i = 0 ; i < $this_input_keys.length ; i++ ) 
+				{
+					//Hacer división aquí
+					// Valores 1.- name , 2.- placeholder , 3- clase
+					var temp_array = $this_input_keys[i].trim().split("*");
+
+					//Setear en array general 
+					array_keys[i] = { 
+						"name"       : temp_array[0].trim().toString() ,
+						"placeholder": temp_array[1].trim().toString() ,
+						"class"      : temp_array[2].trim().toString() ,
+					};
+
+				}
+
+				//Setear número de elementos en el objeto
+				var number_elements = Object.keys(array_keys).length;
 
 				//Elemento padre general
 				$parent_container = $this_button.parent("div");
@@ -34,15 +64,20 @@ var j = jQuery.noConflict();
 				$section_container = $parent_container.find(".js-section-element-dynamic");
 
 				//Html interno a setear
-				$stringHtmltoSet = "<label for="+"mb_colors_product["+$last_element_count+"][text]> Nombre de Color: </label>";
+				$stringHtmltoSet = "";
 
-				$stringHtmltoSet += "<input type='text' name=mb_colors_product["+$last_element_count+"][text] value='' placeholder='eg. Negro , Rojo' />";
+				//Hacer recorrido para setear los label e inputs y utilizar el objeto
+				//array_keys
+				for ( var i = 0 ; i < number_elements ; i++ ) 
+				{
+					console.log( array_keys[i].placeholder );
+					
+					$stringHtmltoSet += "<label for="+$this_input_name+"["+$last_element_count+"]["+array_keys[i].name+"]> Elemento Nombre ("+array_keys[i].name+") : </label>";
 
-				$stringHtmltoSet += "<br/>";
-
-				$stringHtmltoSet += "<label for="+"mb_colors_product["+$last_element_count+"][color]> Color: </label> <br/>";
-
-				$stringHtmltoSet += "<input type='text' class='js-add-theme-color' name=mb_colors_product["+$last_element_count+"][color] value='' />";
+					$stringHtmltoSet += "<input type='text' name="+$this_input_name+"["+$last_element_count+"]["+array_keys[i].name+"] value='' placeholder='"+array_keys[i].placeholder+"' class="+array_keys[i].class+" />";
+					
+					$stringHtmltoSet += "<br/>";
+				} 
 
 
 				//Agregar contenido elemento hijo a la seccion contenedora de elementos
