@@ -150,7 +150,7 @@ function add_banner_img_save_postdata($post_id){
 add_action( 'add_meta_boxes', 'attached_images_meta' );
 
 function attached_images_meta() {
-  $screens = array( 'post', 'page' , 'servicio' , 'proyecto' , 'galery-images' ); 
+  $screens = array( 'post', 'page' , 'servicio' , 'producto-theme' , 'galery-images' ); 
   //add more in here as you see fit
 
   foreach ($screens as $screen) {
@@ -169,8 +169,10 @@ function attached_images_meta_box($post){
 	$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
 	//convertir en arreglo
 	$input_ids_img  = explode(',', $input_ids_img ); 
-	//eliminar valores duplicados - sigue siendo array
+	//eliminar valores negativos
+  $input_ids_img  = array_diff( $input_ids_img , array(-1) );
 	#$input_ids_img  = array_unique( $input_ids_img );
+  
 	//colocar en una sola cadena para el input
 	$string_ids_img = "";
 	$string_ids_img = implode(',', $input_ids_img);

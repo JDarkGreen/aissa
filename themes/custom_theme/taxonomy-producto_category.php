@@ -11,8 +11,11 @@ $options = get_option("theme_settings");
 #Objeto actual 
 $current_object = get_queried_object(); 
 
+#ASIGNAR ELEMENTO PRIMER ELEMENTO PADRE PARA SETEAR EL BANNER
+$termParent = ($current_object->parent == 0) ? $current_object : get_term( $current_object->parent );
+
 #OBTENEMOS TODOS LOS CAMPOS PERSONALIZADOS EN EL ADMIN DE ESTE OBJETO - CATEGORIA
-$object_option  = get_option( 'taxonomy_' . $current_object->term_id );
+$object_option  = get_option( 'taxonomy_' . $termParent->term_id );
 
 #Seteamos la variable banner object de acuerdo al objeto
 $banner_object  = $object_option['theme_tax_banner_img'];  
@@ -150,6 +153,9 @@ $id_current_element = $first_child_element->term_id;
 									<!-- Botón de ver más -->
 									<a href="<?= get_the_permalink(); ?>" class="btnCommon__show-more text-uppercase">
 										<?= __( "ver más" , "LANG" ); ?> </a>
+
+									<!-- Separación -->
+									<br><br><br>
 
 									<!-- Sección Compartir -->
 									<?php 

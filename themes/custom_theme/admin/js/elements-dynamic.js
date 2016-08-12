@@ -23,7 +23,7 @@ var j = jQuery.noConflict();
 
 				//Ultimo elemento que conto - numero + 1
 				$last_element_count = parseInt( $this_button.attr("data-last-element") );
-				$last_element_count = $last_element_count !== 0 ? $last_element_count + 1 : 0;
+				$last_element_count = $last_element_count + 1;
 
 				//Nombre del input a setear eg. mb_colors_product 
 				$this_input_name = $this_button.attr("data-input-name");
