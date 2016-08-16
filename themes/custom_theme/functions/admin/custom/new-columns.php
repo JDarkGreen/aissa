@@ -64,10 +64,11 @@ function add_thumbnail_columns_data( $column, $post_id ) {
 * Seleccionar o customizar los tipos de posts que ser verán afectados.
 **/
 
-$custom_posts_type    = array();
+$custom_posts_type   = array();
 $custom_posts_type[] = "slider-home";
 $custom_posts_type[] = "producto-theme";
 $custom_posts_type[] = "theme-marcas";
+$custom_posts_type[] = "theme-promotion";
 
 
 if ( function_exists( 'add_theme_support' ) ) :

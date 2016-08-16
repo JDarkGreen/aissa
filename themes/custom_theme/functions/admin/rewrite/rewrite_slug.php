@@ -53,7 +53,12 @@ function get_all_taxonomies()
 		#Hacemos los cambios correspondientes
 		$custom_post_type_args->show_admin_column     = true;
 		#Seteamos el nuevo slug personalizado 
-		$custom_post_type_args->rewrite['slug']       = $options['theme_rewriteurl'][$post_type];
+
+		#Si existe la opcion de sobreescritura entonces setearla sino dejar su valor
+		#por defecto.
+
+		$custom_post_type_args->rewrite['slug'] = isset( $options['theme_rewriteurl'][$post_type] ) ? $options['theme_rewriteurl'][$post_type] : $custom_post_type_args->rewrite['slug'];
+
 		$custom_post_type_args->rewrite['with_front'] = false;
 
 		// re registramos nuevamente el tipo de post

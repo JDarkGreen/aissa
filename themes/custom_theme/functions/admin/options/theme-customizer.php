@@ -27,7 +27,7 @@ add_action( 'admin_init', 'custom_theme_settings_init' );
 **/
 function custom_theme_add_admin_menu() 
 { 
-	add_menu_page( 'Optiones tema: ' . get_bloginfo("name") , 'Opciones Tema:' , 'manage_options', 'optiones_tema', 'custom_theme_options_page' );
+	add_menu_page( 'Optiones tema: ' . get_bloginfo("name") , 'Opciones Tema' , 'manage_options', 'optiones_tema', 'custom_theme_options_page' );
 
 }
 

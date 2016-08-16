@@ -21,6 +21,7 @@ function theme_sort_item_custom_post_type()
 	$custom_post_types[] = "producto-theme";
 	$custom_post_types[] = "theme-video";
 	$custom_post_types[] = "theme-marcas";
+	$custom_post_types[] = "theme-promotion";
 
 	add_meta_box( 'mb-sort-custom-post-type', 'Orden de Elementos', 'theme_mb_sort_elements_cb', $custom_post_types , 'side', 'high' );
 }
@@ -298,46 +299,66 @@ function cd_mb_theme_sort_elements_save( $post_id  )
 
 	#Añadir un nuevo campo personalizado si la clave no existe , o actualiza el valor del campo 
 	#personalizado con esa clave de otro modo .
+
+	#Si la clave existe
 	if( !empty($this_num_order) ) :
 
-		#Conseguir si valor de orden tiene un id
+		#OBTENER UN ARRAY DE IDS Y META ORDER y comparar que no haya repetidos 
+		#en caso que los haya aumentar + 1 
 		$args_values = array(
 			'meta_key'       => 'mb_sort_elements_select',
 			'order'          => 'ASC',
 			'orderby'        => 'date', 
 			'post_status'    => 'publish',
 			'post_type'      => $this_get_post_type,
-			'posts_per_page' => 1,
+			'posts_per_page' => -1,
 			'meta_value'     => $this_num_order,
 			'meta_compare'   => '==',
 		);
+		#Obtener todos los posts con este mismo numero de orden
 		$filter_posts   = get_posts( $args_values );
-		$id_filter_post = $filter_posts[0]->ID;
+		var_dump($filter_posts ); #exit;
 
-		/**
-		* Si tienen el mismo id entonces guardar normal sino setear ultimo valor mas 1
-		**/
+		#Si hay más de uno ( esto es decir que hay más de un repetido aparte del nuevo item que reemplaza a este  )
+		if( count($filter_posts) > 2 ): 
 
-		if ( $post_id === $id_filter_post ) : 
+			#Este post aumenta su numero de order + 1 
+			update_post_meta( $post_id , 'mb_sort_elements_select' , $set_order );
+
+		#Si hay no hay repetidos
+		else: 
+
+			#Setear el mismo valor del select
 			update_post_meta( $post_id , 'mb_sort_elements_select' , $_POST['mb_sort_elements_select'] );
-			#actualizar valor mas 1
-		else:
-			#es diferente id 
-			
-			#si el valor es igual al mismo
-			if( $this_num_order !== $_POST['mb_sort_elements_select'] ) :
-				update_post_meta( $post_id , 'mb_sort_elements_select' , $_POST['mb_sort_elements_select'] );
-			else:
-				update_post_meta( $post_id , 'mb_sort_elements_select' , $set_order );
-			endif; 
 
 		endif;
 
+	#Si no hay order value 
 	else: 
-
-		#Si no hay order value 
 		add_post_meta( $post_id , 'mb_sort_elements_select' , $set_order , true );
-
 	endif;
+
+
+	#0.- Hacemos recorrido para modificar 
+	$args = array(
+		'meta_key'       => 'mb_sort_elements_select',
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value_num',
+		'post_status'    => 'publish',
+		'post_type'      => $this_get_post_type,
+		'posts_per_page' => -1,
+	);
+
+	$all_posts = get_posts( $args );
+
+	#orden correcto de elementos en caso de que se desordenen o 
+	#salten números
+	$control_actualizar = 1;
+	foreach ( $all_posts as $this_custom_post ) :
+
+		#actualizar datos
+		update_post_meta(  $this_custom_post->ID , 'mb_sort_elements_select' , $control_actualizar );
+
+	$control_actualizar++ ; endforeach;
 
 }

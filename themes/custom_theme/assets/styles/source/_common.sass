@@ -275,6 +275,7 @@ img.aligncenter, img.alignright, img.alignleft
 
 /** [ SIDEBAR COMMON ] **/
 .sidebarCommon
+	margin: 0
  
 /** [ SECCIÓN DE PRENDAS ] **/
 .sectionCommon__prendas
@@ -484,3 +485,19 @@ img.aligncenter, img.alignright, img.alignleft
 				&.social--gplus
 					&:hover 
 						background: #DB4A39
+
+
+/***************************************************************************************/
+/**-- 1.17 SECCIÓN PAGINACIÓN  -------------------------------------------------------**/
+/***************************************************************************************/
+
+.pageCommonPagination
+	a 
+		color          : black 
+		display        : inline-block 
+		margin         : 0 2px 
+		text-decoration: none 
+		+transition( all 500ms ease-in-out )
+		//hover 
+		&:hover , &.active 
+			font-weight: 700
