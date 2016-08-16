@@ -95,7 +95,8 @@ include( locate_template("partials/common/banner-common-pages.php") );
 								#Convertir en arreglo
 								$gallery_ids  = explode(',', $gallery_ids ); 
 								#Eliminar elementos negativos 
-								$gallery_ids = array_diff( $gallery_ids , array(-1) );
+								$gallery_ids = array_diff( $gallery_ids , array(-1,"-1") );
+								$gallery_ids = array_filter($gallery_ids);
 
 								if( !empty($gallery_ids) && count($gallery_ids) > 1 ) :
 
