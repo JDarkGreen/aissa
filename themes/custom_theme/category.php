@@ -17,128 +17,182 @@
 	* ["taxonomy"] ["description"] ["parent"] ["count"] ["filter"] 
 	*/
 
-	$banner = get_page_by_title("blog");  // Seteamos la variable banner de acuerdo al post
-	include( locate_template("partials/common/banner-common-pages.php") );
+	// Seteamos la variable banner de acuerdo al post
+	$banner = get_page_by_title("blog");  
 
-	#Posts_por_páginas
-	$posts_per_page = 6; 
-	#Paginación
-	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	include( locate_template("partials/common/banner-common-pages.php") );
+	#Variables Para Paginación
+	$paged          = get_query_var("paged") ? get_query_var("paged") : 1;
+	$posts_per_page = 4;
+
+	/**
+		** Extraer todas las categorias de blog 
+	**/
+	$categories_blog = get_categories( 
+		array(
+			'hide_empty' => false,
+			'meta_key'   => 'meta_order_taxonomy',
+			'order'      => 'ASC',
+			'orderby'    => 'meta_value_num',
+			'parent'     => 0,
+		)
+	);
+
 ?>
 
-<!-- Contenedor Principal -->
-<main class="">
+<!-- Layout de Página -->
+<main class="pageContentLayout">
 	
-	<!-- Contenedor Contenido -->
-	<section class="pageWrapperLayout pageBlog">
+	<!-- Wrapper de Contenido -->
+	<div class="pageWrapperLayout">
 
-		<!-- Título de Página --> <h2 class="pageSectionCommon__title pageSectionCommon__title--orange text-uppercase"> <?= __(  $current_term->name , LANG ); ?> </h2>
-
-		<!-- Separador --> <br/>
-
-		<!-- Contenedor  -->
 		<div class="row">
-			
-			<!-- Previews de Noticias o blog -->
-			<div class="col-md-8">
+
+			<!-- Contenedor de Blog  -->
+			<div class="col-xs-12 col-sm-8">
 
 				<section class="pageBlog__content">
-					<?php  
-						#Extraemos todos los posts disponibles 
-						$args = array(
-							'category_name' => $current_term->slug,
-							'order'         => 'DESC',
-							'orderby'       => 'date',
-							'paged'         => $paged,
-							'post_status'   => 'publish',
-							'post_type'     => 'post',
-							'posts_per_page'=> $posts_per_page,
-						);
-						$the_query = new WP_Query( $args );
 
-						if( $the_query->have_posts() ) :
+				<?php  
+					/**
+					** Extraer todos los post de blog según la primera categoría
+					**/
+					$args = array(
+						"cat"            => $current_term->term_id , #id de categoria
+						"order"          => 'DESC',
+						"orderby"        => 'date',
+						"post_status"    => 'publish',
+						"post_type"      => 'post',
+						"posts_per_page" => $posts_per_page,
+						"paged"          => $paged,
+					);
 
-						/* Variable de control para asignar filas */
-						$control_row     = 0;	
-						/* Item a mostrar por fila */
-						$item_per_row    = 3;
-						/* Minimo num items  */
-						$min_num_per_row = $item_per_row - 1;
-						/* Maximo num items  */
-						$max_num_per_row = $item_per_row + $min_num_per_row;
+					$the_query = new WP_Query( $args );
 
-						while( $the_query->have_posts() ) : $the_query->the_post();
-					?> 
-
-					<!-- ABRIR FILA -->
-					<?php if( $control_row % $item_per_row == 0 ) : ?><div class="row"><?php endif; ?>
-
-						<!-- ARTICULO O ITEM  -->
-						<div class="col-xs-12 col-md-4">
-							<article class="articleBlog__preview text-xs-center">
-								<a href="<?= get_the_permalink( get_the_ID() ); ?>">
-									<!-- Figure -->
-									<figure>
-										<?php if( has_post_thumbnail() ) : ?>
-											<?= get_the_post_thumbnail( get_the_ID() , 'full' , array('class'=>'img-fluid center-block') ); ?>
-										<?php else : ?>
-											<img src="http://placehold.it/620x348" class="img-fluid" alt="<?= get_the_title(); ?>" />
-										<?php endif; ?>
-									</figure>
-
-									<!-- Nombre -->
-									<h2 class="text-uppercase"><?= get_the_title(); ?></h2>
-								</a>
-							</article> <!-- /.articleBlog__preview -->
-						</div> <!-- /.col-xs-12 col-md-4" -->
-
-					<!-- CERRAR FILA -->
-					<?php if( ($control_row == $min_num_per_row ) || ($control_row >= $max_num_per_row && ($control_row - $max_num_per_row ) % $item_per_row == 0  ) ) : ?> 
-					</div><!-- /end row --> <?php endif; ?>
-
-					<?php $control_row++; endwhile; ?>
-
-					<!-- Limpiar Floats --> <div class="clearfix"></div>
-
-					<!-- Páginación aquí -->
-					<section class="sectionPagination text-xs-center">
-						<!-- Link to Home -->
-						<?php $current_item_page = ($paged - 1) * $posts_per_page; ?>
-						<a href="#"> <?= "Página ( $current_item_page / $the_query->found_posts )" ?></a>
-						<!-- Enlaces a página -->
-						<?php  
-							/*
-							Numero total de páginas. Is the result of $found_posts / $posts_per_page 
-							*/
-							$pages = $the_query->max_num_pages;
-							for ( $i=1 ; $i <= $pages ; $i++ ) { ?>
-							<a class="<?= $i == $paged ? 'active current' : '' ?>" href="<?= get_pagenum_link( $i ); ?>"> <?= $i; ?> </a>
-						<?php } /* endfor */ ?>
-					</section> <!-- /.sectionPagination -->
-
-					<?php wp_reset_postdata(); endif; ?>
-
-				</section> <!-- /. -->
-				
-			</div> <!-- /.col-md-8 -->	
-
-			<!-- Incluir Template de Categorías -->
-			<div class="col-md-4">
-				<?php 
-					/* Extraer todas las categorías padre */  
-					$categorias = get_categories( array(
-						'orderby' => 'name' , 'parent' => 0, 'hide_empty' => false,
-					) );
-					#Incluir plantilla tema
-					include( locate_template("partials/common/sidebar-categories.php") ); 
+					if( $the_query->have_posts() ) :
 				?>
-			</div> <!-- /.col-md-4 -->
+				
+					<section>
+
+						<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+
+							<!-- Preview del Artículo -->
+							<article class="pageBlog__itemPreview">
+								
+								<div class="row">
+									
+									<!-- imágen -->
+									<div class="col-xs-12 col-sm-4">
+										<figure>
+											<a href="<?= get_the_permalink(); ?>">
+											<?php if( has_post_thumbnail() ) : ?>
+											<!-- Mostrar Imagen -->
+											<?= get_the_post_thumbnail( get_the_ID() , 'full' , array("class"=>'img-fluid m-x-auto d-block') ); ?>
+											<!-- Sino -->
+											<?php else: ?>
+												<img src="https://unsplash.it/900/688" alt="<?= get_the_title(); ?>" class="img-fluid m-x-auto d-block" />
+											<?php endif; ?>
+											</a>
+										</figure>
+									</div> <!-- /. -->
+
+									<!-- contenido -->
+									<div class="col-xs-12 col-sm-8">
+										
+										<!-- Título -->
+										<h3 class="text-uppercase"><?= get_the_title(); ?></h3>
+
+										<!-- Extracto -->
+										<p>
+											<?php  
+												$content = wp_strip_all_tags( get_the_content() );
+												#limite palabras
+												$limit_words = 40;
+												#Mostrar palabras
+												echo wp_trim_words( $content , $limit_words , '...' );
+											?>
+										</p>
+
+										<!-- Redes sociales y ver más -->
+										<?php  
+											/**
+											* Incluir Archivo Compartir 
+											**/
+
+											$link_share        = get_the_permalink();
+											$button_more_share = true;
+
+											include( locate_template("partials/share/shared-buttons.php") );
+										?>
+
+										<!-- Limpiar floats --> <div class="clearfix"></div>
+
+									</div> <!-- /.col-xs-12 col-sm-8 -->
+
+								</div> <!-- /.row -->
+
+							</article> <!-- /.pageBlog__itemPreview -->
+
+						<?php endwhile; ?>
+						
+					</section>
+
+					<!-- Contenedor de Sección de Paginación -->
+					<section class="pageCommonPagination text-xs-center">
+						<?php  
+							$pages = $the_query->max_num_pages;
+
+							for( $i = 1 ; $i<= $pages ; $i++ ) { 
+						?>
+
+						<a href="<?= get_pagenum_link($i); ?>" class="<?= $paged == $i ? 'active' : '' ?>"> <?= $i; ?> </a>
+
+						<?php } ?>
+					</section> <!-- /.pageCommonPagination -->
+
+				<?php else: ?>
+
+					<h2 class="text-uppercase titleCommon__category colorPurple">
+						<?= __("No hay post en esta categoría por el momento. Puede visitar otras. Gracias"); ?>
+					</h2>
+
+				<?php endif; wp_reset_postdata(); ?>
+
+				</section> <!-- /.pageBlog__content -->
+
+			</div> <!-- /. -->
+
+			<!-- Aside de Blog  -->
+			<div class="col-xs-12 col-sm-4">
+				
+				<?php  
+					/** 
+					** Incluir Plantilla sidebar categories
+					**/
+
+					#Parametros
+					$categorias = $categories_blog;
+					#Plantilla
+					include( locate_template("partials/common/sidebar-categories.php") );
+				?>
+			
+			</div> <!-- /. -->
+			
 
 		</div> <!-- /.row -->
 
-	</section> <!-- /.pageWrapperLayout -->
+
+		<?php  
+			/**
+			** Incluir Plantilla de Catálogo
+			**/
+			include( locate_template("partials/common/section-catalogo-empresa.php") );
+		?>
+		
+	</div> <!-- /.pageWrapperLayout -->
 
 </main> <!-- /.pageWrapper -->
+
 
 <!-- Footer -->
 <?php get_footer(); ?>

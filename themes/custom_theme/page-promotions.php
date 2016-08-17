@@ -28,12 +28,12 @@
 
 			$args = array(
 				"order"          => 'ASC',
-				"orderby"        =>'meta_value_num',
+				"orderby"        => 'meta_value_num',
 				"paged"          => $paged,
 				"post_status"    => 'publish',
 				"post_type"      => 'theme-promotion',
 				"posts_per_page" => $posts_per_page,
-				'meta-key'       => 'mb_sort_elements_select',
+				'meta_key'       => 'mb_sort_elements_select',
 			);
 
 			//WP_Query -> promociones 
@@ -42,29 +42,25 @@
 		if( $the_query->have_posts() ) : ?>
 
 		<!-- Contenedor de Promociones -->
-		<section class="pagePromotion__content">
-			<div class="row">
+		<section class="pagePromotion__content containerFlex">
 
-				<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+			<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
-					<!-- Artículo o item  -->
-					<?php if( has_post_thumbnail() ) : ?>
-						<div class="col-xs-12 col-sm-4">
-							<article class="itemPromotion">
-								<?php 
-									#Obtener url de Imágen
-									$feat_img = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
-								?>
-								<a href="<?= $feat_img ?>" class="gallery-fancybox">
-									<?= get_the_post_thumbnail( get_the_ID() , 'full' , array("class"=>'img-fluid center-block m-x-auto') ); ?>
-								</a>
-							</article> <!-- /.itemPromotion -->
-						</div> <!-- /.col-xs-12 col-sm-4 -->
-					<?php endif; ?>
-					
-				<?php endwhile; ?>
-
-			</div> <!-- /.row -->
+				<!-- Artículo o item  -->
+				<?php if( has_post_thumbnail() ) : ?>
+					<article class="itemPromotion">
+						<?php 
+							#Obtener url de Imágen
+							$feat_img = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
+						?>
+						<a href="<?= $feat_img ?>" class="gallery-fancybox">
+							<?= get_the_post_thumbnail( get_the_ID() , 'full' , array("class"=>'img-fluid center-block m-x-auto') ); ?>
+						</a>
+					</article> <!-- /.itemPromotion -->
+				<?php endif; ?>
+				
+			<?php endwhile; ?>
+			
 		</section> <!-- /.pagePromotion__content -->
 
 		<!-- Contenedor de Páginacion -->

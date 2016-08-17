@@ -4,6 +4,9 @@
 
 /** Importar Fuentes **/
 
+//Roboto
+@import 'https://fonts.googleapis.com/css?family=Roboto'
+
 //Shelley
 @font-face
 	font-family: 'Shelley' 
@@ -409,8 +412,9 @@ body
 
 	//Artículo o item
 	.itemPromotion
-		margin  : 0 auto 25px
+		margin  : 0 10px 25px
 		overflow: hidden
+		width   : 31%
 		//Imágenes
 		img 
 			+transition( all 500ms ease-in )
@@ -420,154 +424,184 @@ body
 				+scale( 1.2 )
 
 
+/***************************************************************************************/
+/**--  PAGINA GALERÍA ----------------------------------------------------------------**/
+/***************************************************************************************/
+
+//Contenedor
+.sectionPage__multimedia
+	display        : flex 
+	flex-wrap      : wrap 
+
+	//Articulos o Ítems
+	.itemMultimedia
+		margin: 0 7px 15px 
+		width : 32%
+
+	//Iframe
+	.itemMultimedia__frame
+		margin: 0 4.5px 15px 
+		width : 24%
+		
+		//Título
+		h3 
+			font-family: "Helvetica-Light"
+			font-weight: 700 
+
+			//Variaciones
+			&.itemMultimedia__title
+				font-size: 28px
+
+			&.itemMultimedia__subtitle
+				font-size: 20px
+
+		//Contenedor embebido
+		.embed-container
+			height        : 0
+			overflow      : hidden
+			position      : relative
+			width         : 100%
+
+			//Iframe
+			iframe 
+				height  : 100%			
+				left    : 0
+				position: absolute
+				top     : 0
+				width   : 100%
+	
+	//Iframe Master
+	.itemMultimedia__frame--master
+		margin: 0 auto 60px 
+		width : 100%
+		//Contenedor embebido
+		.embed-container
+			padding-bottom: 600px
 
 
 /***************************************************************************************/
 /**--  PAGINA BLOG  ----------------------------------------------------------------**/
 /***************************************************************************************/
 
+/**[ CONTENEDOR DE BLOG ] **/
+.pageBlog__content
+	background: white 
+	border    : 1px solid #a7a7a7
+	padding   : 35px 
+
 /** [ PREVIEW DE BLOG ] **/
-.articleBlog__preview
-	margin: 0 auto 10px
-	//Imagen
+.pageBlog__itemPreview
+	margin: 0 auto 70px
+	//Título
+	h3 
+		font-size  : 20px
+		font-weight: 600 
+	//Párrafo
+	p 
+		font-size: 15px
+	//Imágenes 
 	figure 
-		overflow: hidden
+		margin    : 0 
+		max-height: 174.44px 
+		overflow  : hidden
 		img 
-			+transition( all 500ms ease )
-			height    : auto 
-			margin    : 0 auto 
-			max-height: 106px 
-			max-width : 189px 
-			width     : 100%
-	//Titulo
-	h2
-		align-items    : center
-		color          : green
-		display        : flex
-		font-size      : 15px
-		font-weight    : 600
-		height         : 50px
-		justify-content: center
-		margin         : 0
-	//Hover Preview
+			+transition( all 1.5s ease-in-out )
+	//Hover  article
 	&:hover 
 		img 
-			+opacity( 0.7 )
+			+scale( 1.2 )
 
-/* Articulo de blog */
-.articleBlog
-	img 
-		height   : auto 
-		margin   : 0 auto 
-		max-width: 100%
-		width    : 100%
-
-/***************************************************************************************/
-/**--  PAGINA GALERÍA ----------------------------------------------------------------**/
-/***************************************************************************************/
-
-//SECCION GENERAL GALERÍA
-.pageGallery__section
-	// ARTICLE - ITEM DE GALERÍA
-	.item-gallery
-		margin: 0 auto 45px
-
-		//IFRAME PARA LOS VIDEOS
-		iframe 
-			height: 300px
-			width : 100%
-		//Hover article
-		&:hover 
-			.container-hover 
-				+opacity( 1 )
-	
-	//Contenido de texto 
-	.item-gallery-content
-		height  : 43px
-		overflow: hidden
-
-	//CONTENEDOR HOVER 
-	.container-hover 
-		+opacity( 0 )
-		+transition( all 500ms ease-in )
-		background : rgba( 0 , 152 , 0, .6 )
-		bottom     : 0
-		color      : white
-		font-size  : 25px 
-		font-weight: 600 
-		left       : 0
-		position   : absolute
-		right      : 0
-		top        : 0 
-		//Icon 
-		i 
-			+border-radius( 50% )
-			border : 4px solid rgba(255,255,255,0.25)
-			color  : rgba(255,255,255,0.25)
-			display: flex
-			height : 40px	
-			margin : 0 auto
-			margin : 0 auto 15px 
-			width  : 40px
 
 
 /***************************************************************************************/
 /**--  PÁGINA CONTACTO ---------------------------------------------------------------**/
 /***************************************************************************************/
 
-/** INFORMACIÓN DE CONTACTO **/
-.pageContacto__info	
-	background : rgba(255,255,255,.9)
-	box-shadow : 1px 2px 8px #666
-	left       : 15px
-	overflow   : hidden
-	padding    : 10px
-	position   : absolute
-	top        : 15px
-	width      : 300px
-	z-index    : 1000
-	white-space: pre-line
-	//Estilos internos
-	pre 
-		white-space: pre-line
-	pre , span , p 
-		font-size  : 12px
-		font-family: "Arial", sans-serif !important
-
-
-/* Sección Formulario de Contacto */
-.pageContacto__formulary
-	background   : rgba(255,255,255,0.7)
-	box-shadow   : 1px 2px 8px #666
-	min-height   : 400px
-	overflow     : hidden
-	padding      : 10px
-	position     : absolute
-	right        : 10px
-	top          : 10px
-	width        : 280px
-	z-index      : 1000
-	//Título de sección
+/** [ ITEM CONTACTO ] **/
+.pageContacto__item
+	margin : 0 auto 40px
+	//Título
 	h2 
-		font-size  : 19px 
-		font-weight: 600 
-		margin     : 16px auto
-	//Fommulario dentro de sección
-	form 
-		//inputs y textarea 
-		.text-form, .text_area	
-			border   : #e6e6e6 2px solid
-			color    : #333
-			font-size: 13px 
-			margin   : 0 2px 10px 0
-			outline  : none
-			padding  : 9px 5px
-			width    : 95%
+		font-family: "Roboto" , sans-serif
+		font-size  : 30px  
+		font-weight: 600
+		line-height: 1em 
+		margin     : 0 auto 18px 
+		position: relative 
+		//span 
+		span 
+			background: url("../../images/backgrounds/fondo_aissa_confeccion_ropa_Interior_dama_varon_2.jpg")
+			padding   : 0 20px 0 0
+		//after 
+		&:after
+			background: #a7a7a7
+			bottom    : 5px
+			content   : ""
+			height    : 1px
+			left      : 0
+			overflow  : hidden
+			position  : absolute
+			width     : 100%
+			z-index   : -9999
+
+	ul
+		list-style-type: none
+		
+		/** Datos de Contacto **/
+		&.pageContacto__data
+			li 
+				margin: 0 auto 14px
+				i 
+					display       : inline-block
+					height        : 20px 	
+					margin        : 0 5px 0 -30px 
+					vertical-align: middle
+					width         : 20px 
+				//Contenedor de texto
+				.content-text
+					display       : inline-block
+					vertical-align: middle
+					p
+						color      : black 
+						font-size  : 14px 
+						line-height: 1.3em 
+						margin     : 0 
+
+		/** Menú de Redes Sociales **/
+		&.pageContacto__socialLinks
+			margin : 0 
+			padding: 0
+			li 
+				display: inline-block
+				padding: 0 11px 0 0
+				a 
+					i 
+						color    : #7F8080
+						font-size: 20px 
+
+/* Item group de formulario */
+.pageContacto__form__group
+	margin : 0 auto 12px
+	input, textarea 
+		+border-radius( 2px )
+		border     : 1px solid #666666
+		font-size  : 15px 
+		line-height: 1em 
+		padding    : 9px 12px 
+		width      : 100%
+	//Solo textarea
+	textarea
+		height    : 136px 
+		max-height: 136px 
 
 //SECCIÓN DE MAPA [ Común y protegido ]
+.pageContacto__mapa
+	margin: 20px auto 50px 
+
 #canvas-map
-	height: 540px 
-	width : 100%
+	height   : 389px 
+	max-width: 100%
+	width    : 100%
 
 
 /***************************************************************************************/

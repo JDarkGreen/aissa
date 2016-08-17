@@ -5,12 +5,28 @@
 
 #@parametro $link_share
 
+if( isset( $link_share ) ) :
+
 ?>
 
 
 <!-- Limpiar floats --> <div class="clearfix"></div>
 
 <section class="sectionCommonShareLinks">
+
+	<?php  
+
+		/**
+		* Añadir Botón ver más segun parametro
+		**/
+
+		if( isset( $button_more_share) && $button_more_share == true ) :
+	?>
+		<!-- Botón ver más -->
+		<a href="<?= $link_share; ?>" class="btnCommon__show-more text-uppercase pull-xs-right">
+			<?= __( "ver más" , "LANG" ); ?>
+		</a>
+	<?php endif; ?>
 
 	<ul class="text-uppercase">
 		<li> <?= __("compartir en: " , "LANG" ); ?> </li>
@@ -33,5 +49,8 @@
 		<li></li>
 
 	</ul>
-	
+
 </section> <!-- /.sectionCommonShareLinks -->
+
+
+<?php endif; ?>

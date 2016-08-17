@@ -12,7 +12,8 @@ function get_all_taxonomies()
 
 	$all_taxonomies = get_taxonomies();
 	#excluir taxonomias
-	$exclude_tax    =  array("post_tag","nav_menu","link_category","post_format","wpmf-category");
+	$exclude_tax    =  array("category","post_tag","nav_menu","link_category","post_format","wpmf-category");
+
 	#solo quedar con las taxonomias necesarias
 	$all_taxonomies = array_diff( $all_taxonomies , $exclude_tax );
 

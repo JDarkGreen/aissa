@@ -2,7 +2,8 @@
 
 <?php if( isset($categorias) ) : 
 
-$current_term = get_queried_object(); //Objeto actual si es taxonomía
+//Objeto actual si es taxonomía
+$current_term = isset($principal_category) ? $principal_category : get_queried_object() ;
 
 ?>
 

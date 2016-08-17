@@ -7,9 +7,8 @@
 * TAXONOMIAS ESPECIFICADAS
 */
 
-$taxonomies    = array();
-$taxonomies[1] = 'producto_category'; //categoría de producto
-
+$taxonomies   = array();
+$taxonomies[] = 'producto_category'; //categoría de producto
 
 /**
 * Funciones para hacer la llamada callback
@@ -296,12 +295,46 @@ function save_taxonomy_custom_fields( $term_id ) {
         // Save the option array.
         update_option( "taxonomy_$t_id", $term_meta );
     }
-}  
+
+    /**
+    * AGREGAR  META DATA A LAS TAXONOMIAS 
+    **/
+
+    /*|** [Campo Orden] **|*/ 
+    $meta_order = get_term_meta( $term_id , 'meta_order_taxonomy' , true );
+
+    #Si ya tiene un meta data 
+    if ( ! add_term_meta ( $term_id , 'meta_order_taxonomy' , 1 ) ) :
+        
+        #actualizar valor
+        update_term_meta( $term_id , 'meta_order_taxonomy' , $_POST['term_meta']['theme_tax_order'] );
+    
+    endif;
+
+}
+
+
 
 /**
-** Agregamos los hooks necesarios segun cuantas taxonomías hayamos seteado
+** Agregamos los hooks necesarios solo a la taxonomía Categoría
 */
-foreach( $taxonomies as $tax ){
+
+// Agregue hooks para mostrar en la página de seteo 
+add_action( 'category_add_form_fields', 'theme_taxonomy_add_custom_fields');
+
+//  Agregue los campos a categoria , utilizando nuestra función de devolución de llamada
+add_action( 'category_edit_form_fields', 'theme_taxonomy_edit_custom_fields');
+
+// Accion Guardar Agregue los campos a categoria
+add_action( 'create_category', 'save_taxonomy_custom_fields');
+
+// Accion Guardar los campos a categoria formulario editar
+add_action( 'edited_category', 'save_taxonomy_custom_fields');
+
+/**
+** Agregamos los hooks necesarios segun cuantas taxonomías hayamos seteado solo personalizados 
+*/
+foreach( $taxonomies as $tax ):
     // Agregue hooks para mostrar en la página de seteo 
     add_action( $tax . "_add_form_fields", 'theme_taxonomy_add_custom_fields', 10, 2 );  
     
@@ -312,5 +345,5 @@ foreach( $taxonomies as $tax ){
     add_action( "edited_" . $tax , 'save_taxonomy_custom_fields', 10, 2 );  
     add_action( "create_" . $tax , 'save_taxonomy_custom_fields', 10, 2 );
 
-}; /* end of foreach*/
+endforeach; /* end of foreach*/
 

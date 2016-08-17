@@ -30,31 +30,6 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-nametag',
 	);
 
-	/*|>>>>>>>>>>>>>>>>>>>> SERVICIOS  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels2 = array(
-		'name'               => __('Servicios'),
-		'singular_name'      => __('Servicio'),
-		'add_new'            => __('Nuevo Servicio'),
-		'add_new_item'       => __('Agregar nuevo Servicio'),
-		'edit_item'          => __('Editar Servicio'),
-		'view_item'          => __('Ver Servicio'),
-		'search_items'       => __('Buscar Servicios'),
-		'not_found'          => __('Servicio no encontrado'),
-		'not_found_in_trash' => __('Servicio no encontrado en la papelera'),
-	);
-
-	$args2 = array(
-		'labels'      => $labels2,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
-		'show_ui' => true,
-		'taxonomies'  => array( 'servicio_category' , 'post_tag' ),
-		'menu_icon'   => 'dashicons-exerpt-view',
-	);	
-
 	/*|>>>>>>>>>>>>>>>>>>>> PRODUCTOS  <<<<<<<<<<<<<<<<<<<<|*/
 	
 	$labels3 = array(
@@ -103,6 +78,32 @@ function create_post_type(){
 		'show_ui' => true,
 		'taxonomies'  => array( 'post_tag' ),
 		'menu_icon'   => 'dashicons-video-alt3',
+	);
+
+
+	/*|>>>>>>>>>>>>>>>>>>>> GALERÍA FOTOS  <<<<<<<<<<<<<<<<<<<<|*/
+	
+	$labels_photo = array(
+		'name'               => __('Gal. Fotos'),
+		'singular_name'      => __('Gal. Foto'),
+		'add_new'            => __('Nueva Gal. Foto'),
+		'add_new_item'       => __('Agregar nueva Gal. Foto'),
+		'edit_item'          => __('Editar Gal. Foto'),
+		'view_item'          => __('Ver Gal. Foto'),
+		'search_items'       => __('Buscar Gal. Fotos'),
+		'not_found'          => __('Gal. Foto no encontrada'),
+		'not_found_in_trash' => __('Gal. Foto no encontrada en la papelera'),
+	);
+
+	$args_photos = array(
+		'labels'      => $labels_photo,
+		'has_archive' => true,
+		'public'      => true,
+		'hierachical' => false,
+		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes' ),
+		'show_ui' => true,
+		'taxonomies'  => array( 'post_tag' ),
+		'menu_icon'   => 'dashicons-format-gallery',
 	);
 
 	/*|>>>>>>>>>>>>>>>>>>>> MARCAS  <<<<<<<<<<<<<<<<<<<<|*/
@@ -159,12 +160,13 @@ function create_post_type(){
 	/*|>>>>>>>>>>>>>>>>>>>> REGISTRAR  <<<<<<<<<<<<<<<<<<<<|*/
 	register_post_type( 'slider-home' , $args  );
 
-	register_post_type( 'servicio' , $args2 );
-
 	register_post_type( 'producto-theme' , $args3 );
 
 	#Galería Videos
 	register_post_type( 'theme-video' , $args_videos );	
+
+	#Galería Imágenes
+	register_post_type( 'theme-images' , $args_photos );	
 
 	#Marcas
 	register_post_type( 'theme-marcas' , $args_marcas );

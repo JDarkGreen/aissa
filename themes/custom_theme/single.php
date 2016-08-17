@@ -1,4 +1,4 @@
-<?php /* Single Name: Single Post Plantilla */ ?>
+<?php /* Single Name: */ ?>
 <!-- Header -->
 <?php 
 	get_header(); 
@@ -6,33 +6,35 @@
 
 	global $post; //Objeto actual - Pagina 
 
-	$page_blog = get_page_by_title("blog");
+	#Página blog 
+	$page_blog    = get_page_by_title("blog");
+	#Seteamos la variable banner de acuerdo al post o página
+	$banner       = $page_blog;  
+	$banner_title = "artículos";  
 
-	$banner = $page_blog;  // Seteamos la variable banner de acuerdo al post
-	include( locate_template("partials/common/banner-common-pages.php") );
-
+	include( locate_template("partials/common/banner-common-pages.php") ); 
 ?>
 
-<!-- Contenedor Principal -->
-<main class="">
+<!-- Layout de Página -->
+<main class="pageContentLayout">
 	
-	<!-- Contenedor Contenido -->
-	<section class="pageWrapperLayout pageBlog">
+	<!-- Wrapper de Contenido -->
+	<div class="pageWrapperLayout">
 
-		<!-- Título de Página --> <h2 class="pageSectionCommon__title pageSectionCommon__title--orange text-uppercase"> <?= __(  $post->post_title , LANG ); ?> </h2>
-
-		<!-- Separador --> <br/>
-
-		<!-- Contenedor  -->
 		<div class="row">
 			
-			<!-- Previews de Noticias o blog -->
-			<div class="col-md-8">
+			<!-- Contenido -->
+			<div class="col-xs-12 col-sm-8">
 
 				<section class="pageBlog__content">
 
 					<!-- Artículo -->
 					<article class="articleBlog">
+
+						<!-- Título de blog -->
+						<h2 class="text-uppercase titleCommon__category colorPurple">
+							<?= $post->post_title; ?>
+						</h2>
 					
 						<!-- Imagen Destacadaa -->
 						<figure>
@@ -50,27 +52,54 @@
 						
 					</article> <!-- /.articleBlog -->
 
-				</section> <!-- /. -->
+				</section> <!-- /.pageBlog__content -->
 				
-			</div> <!-- /.col-md-8 -->	
+			</div> <!-- /.col-xs-12 col-sm-8 -->
 
-			<!-- Incluir Template de Categorías -->
-			<div class="col-md-4">
-				<?php 
-					/* Extraer todas las categorías padre */  
-					$categorias = get_categories( array(
-						'orderby' => 'name' , 'parent' => 0, 'hide_empty' => false,
-					) );
-					#Incluir plantilla tema
-					include( locate_template("partials/common/sidebar-categories.php") ); 
+
+			<!-- Sidebar -->
+			<div class="col-xs-12 col-sm-4">
+
+				<?php  
+					/** 
+					** Incluir Plantilla sidebar categories
+					**/
+
+					#Parametros
+					$categorias = get_categories( 
+						array(
+							'hide_empty' => false,
+							'meta_key'   => 'meta_order_taxonomy',
+							'order'      => 'ASC',
+							'orderby'    => 'meta_value_num',
+							'parent'     => 0,
+						)
+					);
+
+					#$principal_category 
+					$principal_category = get_the_category( $post->ID );
+					$principal_category = $principal_category[0];
+
+					#Plantilla
+					include( locate_template("partials/common/sidebar-categories.php") );
 				?>
-			</div> <!-- /.col-md-4 -->
+				
+			</div> <!-- /.col-xs-12 col-sm-4 -->
 
 		</div> <!-- /.row -->
 
-	</section> <!-- /.pageWrapperLayout -->
+
+		<?php  
+			/**
+			** Incluir Plantilla de Catálogo
+			**/
+			include( locate_template("partials/common/section-catalogo-empresa.php") );
+		?>
+		
+	</div> <!-- /.pageWrapperLayout -->
 
 </main> <!-- /.pageWrapper -->
+
 
 <!-- Footer -->
 <?php get_footer(); ?>

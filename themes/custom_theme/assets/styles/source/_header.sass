@@ -72,7 +72,8 @@
 		//Submenu 
 		&.sub-menu
 			+transition( max-height 1.5s cubic-bezier( 0,0,0, .1 ) )
-			background: rgba(255, 92, 20 , .8)
+			background: #E422BB
+			flex-wrap : wrap 
 			max-height: 0
 			overflow  : hidden
 			padding   : 0 
@@ -81,5 +82,12 @@
 			top       : 110%
 			z-index   : 999
 			li 
-				padding: 10px
+				//Hover and active li - item
+				&:hover , &.current-menu-item , &.current_page_item
+					a 
+						border-bottom: 2px solid white  
+				a 
+					border-bottom: 2px solid transparent
+					margin       : 5px
+					padding      : 10px  
 

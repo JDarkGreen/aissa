@@ -7,6 +7,8 @@
 /***********************************************************************************************/
 	add_theme_support('post-formats', array('link', 'quote', 'gallery', 'video'));
 
+	add_theme_support('category');
+
 	/**
 	* Imagen destacada
 	**/
@@ -17,6 +19,7 @@
 	$custom_types[] = "producto-theme";
 	$custom_types[] = "theme-marcas";
 	$custom_types[] = "theme-promotion";
+	$custom_types[] = "theme-images";
 
 	add_theme_support('post-thumbnails', $custom_types );
 

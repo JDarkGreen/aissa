@@ -276,7 +276,28 @@ img.aligncenter, img.alignright, img.alignleft
 /** [ SIDEBAR COMMON ] **/
 .sidebarCommon
 	margin: 0
- 
+
+	/**[ TITULO DE SIDEBAR ]**/
+	.titleSidebar
+		font-family: "Impact" , sans-serif
+		font-size  : 25px 
+
+	/** Links **/
+	a.link-to-item 
+		+transition( all 500ms ease-in-out )
+		border-bottom  : 1px solid #a7a7a7
+		color          : #a7a7a7
+		display        : block 
+		font-family    : "Helvetica-Light" , sans-serif
+		font-weight    : 600 
+		line-height    : 1em 
+		padding        : 18px 0
+		text-decoration: none 
+		//Hover
+		&.active , &:hover 
+			color: #A50032 
+
+
 /** [ SECCIÓN DE PRENDAS ] **/
 .sectionCommon__prendas
 	margin: 0 auto 47px

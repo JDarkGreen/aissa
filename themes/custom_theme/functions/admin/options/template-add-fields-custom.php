@@ -412,9 +412,36 @@ function custom_text_markup_map_render()
 	<?php
 }
 
+//NUMEROS DETALLADOS
+add_settings_field( 'theme_details_numbers', __( 'Detalle de Números de Contacto:', 'LANG' ), 'custom_details_numbers_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto" );
+//Renderizado 
+function custom_details_numbers_render() 
+{ 
+	$options = get_option( 'theme_settings' ); ?>
+
+	<p class="description"><?= __( "Escribe el texto de todos los números detallados eg. RPC - RPM" , "LANG" ); ?></p>
+
+	<textarea name="theme_settings[theme_details_numbers]" placeholder="eg. RPC: (511) 989037 / 978 988 734 708" style="width:400px;height:200px;max-height:200px;"><?= !empty($options['theme_details_numbers']) ? $options['theme_details_numbers'] : "" ; ?> </textarea>
+	<?php
+}
+
+//HORARIO DE ATENCIÓN
+add_settings_field( 'theme_schedule_attention', __( 'Horario de Atención', 'LANG' ), 'custom_schedule_attention_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto" );
+
+//Renderizado 
+function custom_schedule_attention_render() 
+{ 
+	$options = get_option( 'theme_settings' ); ?>
+
+	<p class="description"><?= __( "Escribe Horario de Atención" , "LANG" ); ?></p>
+
+	<textarea name="theme_settings[theme_schedule_attention]" placeholder="Lunes a Viernes 10am a 7pm" style="width:400px;height:200px;max-height:200px;"><?= !empty($options['theme_schedule_attention']) ? $options['theme_schedule_attention'] : "" ; ?> </textarea>
+	<?php
+}
+
 
 //IMAGEN CONTACTO SECCION
-add_settings_section( PREFIX."_themePage_contacto_image" , __( 'Personalizar Contacto Imágen:' , 'LANG' ), 'custom_settings_contacto_image_callback', 'customThemePageContactoMapa' );
+/*add_settings_section( PREFIX."_themePage_contacto_image" , __( 'Personalizar Contacto Imágen:' , 'LANG' ), 'custom_settings_contacto_image_callback', 'customThemePageContactoMapa' );
 
 function custom_settings_contacto_image_callback()
 { 
@@ -457,7 +484,7 @@ function custom_image_contact_render()
     </section> <!-- /.customize-img-container -->
 		
 	<?php
-}
+} */
 
 //MAS INFORMACION CONTACTO
 /*add_settings_field( 'theme_contact_more_info', __( 'Información Contacto:', 'LANG' ), 'custom_contact_more_render', 'customThemePageContactoMapa', PREFIX."_themePage_contacto" );
@@ -499,7 +526,7 @@ function theme_rewriteurl_render()
 	#todas las taxonomias
 	$all_taxonomies = get_taxonomies();
 	#excluir taxonomias
-	$exclude_tax    =  array("post_tag","nav_menu","link_category","post_format","wpmf-category");
+	$exclude_tax    =  array("category","post_tag","nav_menu","link_category","post_format","wpmf-category");
 	#solo quedar con las taxonomias necesarias
 	$all_taxonomies = array_diff( $all_taxonomies , $exclude_tax );
 ?>

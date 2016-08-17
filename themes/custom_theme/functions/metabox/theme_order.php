@@ -317,7 +317,8 @@ function cd_mb_theme_sort_elements_save( $post_id  )
 		);
 		#Obtener todos los posts con este mismo numero de orden
 		$filter_posts   = get_posts( $args_values );
-		var_dump($filter_posts ); #exit;
+		
+		#var_dump($filter_posts ); #exit;
 
 		#Si hay más de uno ( esto es decir que hay más de un repetido aparte del nuevo item que reemplaza a este  )
 		if( count($filter_posts) > 2 ): 

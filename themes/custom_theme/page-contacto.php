@@ -1,4 +1,4 @@
-<?php /* Template Name: Página Contacto Template */ ?>
+<?php /* Template Name: Página Contact Template */ ?>
 <!-- Header -->
 <?php 
 	get_header(); 
@@ -9,62 +9,233 @@
 	include( locate_template("partials/common/banner-common-pages.php") ); 
 ?>
 
-<!-- Contenedor Principal -->
-<main class="">
+<!-- Layout de Página -->
+<main class="pageContentLayout">
 	
-	<!-- Contenedor Contenido -->
-	<section class="pageWrapperLayout pageContacto">
-
-		<!-- Título de Página --> <h2 class="pageSectionCommon__title pageSectionCommon__title--orange text-uppercase"> <?= __(  $post->post_title , LANG ); ?> </h2>
-
-		<!-- Sección de Contenido  -->
-		<section class="pageContacto__content containerRelative">
+	<!-- Wrapper de Contenido -->
+	<div class="pageWrapperLayout">
+		
+		<div class="row">
 			
-			<!-- MAPA -->
-			<div id="canvas-map"></div>
+			<!-- SECCION DE DATOS  -->
+			<div class="col-xs-12 col-sm-6">
+				
+				<!-- datos -->
+				<div class="pageContacto__item">
 
-			<!-- Información de Contacto -->
-			<div class="pageContacto__info">
-				<?= isset($options['theme_contact_more_info']) && !empty($options['theme_contact_more_info']) ? $options['theme_contact_more_info'] : "Actualizando Información"; ?>
-			</div> <!-- /.pageContacto__info -->
+					<!-- Título -->
+					<h2 class="text-uppercase colorPurple"> 
+						<span> <?= __( "datos" , "LANG" ); ?> </span>
+					</h2>
+
+					<!-- Datos -->
+					<ul class="pageContacto__data">
+						
+						<!-- telefono -->
+						<li>
+							<!-- Icono -->
+							<i>
+								<img src="<?= IMAGES ?>/icon/iconos_contacto_telefono_plomo.png" alt="iconos_contacto_telefono_plomo" class="img-fluid" />
+							</i>
+							
+							<div class="content-text">
+								<p> 
+									<?php
+										$phones = $options['theme_phone_text'];
+
+										for ( $i = 0 ; $i < count($phones) ; $i++ ) 
+										{ 
+											#Variable separación
+											$split = $i == count($phones) - 1 ? "" : " - ";
+											#Mostrar telefonos
+											echo $phones[$i] . $split;
+										} 
+									?> 
+								</p>
+							</div> <!-- /.content-text -->
+
+						</li>
+						
+						<!-- celular -->
+						<li>
+							<!-- Icono -->
+							<i>
+								<img src="<?= IMAGES ?>/icon/iconos_contacto_rpm.png" alt="iconos_contacto_rpm" class="img-fluid" />
+
+							</i>
+
+							<div class="content-text">
+								<?= apply_filters("the_content" , $options['theme_details_numbers'] ); ?>
+							</div> <!-- /.content-text -->
+
+						</li>
+						
+						<!-- email -->
+						<li>
+							<!-- Icono -->
+							<i>
+								<img src="<?= IMAGES ?>/icon/iconos_contacto_mail_plomo.png" alt="iconos_contacto_mail_plomo" class="img-fluid" />
+							</i>
+							
+							<div class="content-text">
+								<p class="colorPurple"> 
+									<?= $options['theme_email_text']; ?>
+								</p>
+							</div> <!-- /.content-text -->
+
+						</li>
+						
+						<!-- direccion -->
+						<li>
+							<!-- Icono -->
+							<i>
+								<img src="<?= IMAGES ?>/icon/iconos_contacto_direccion_plomo.png" alt="iconos_contacto_direccion_plomo" class="img-fluid" />
+							</i>
+							
+							<div class="content-text">
+								<?= apply_filters( "the_content" , $options['theme_address_text'] ); ?>
+							</div> <!-- /.content-text -->
+
+						</li>
+						
+					</ul> <!-- /.pageContacto__data -->
+
+				</div> <!-- /.pageContacto__item -->
+				
+				<!-- horario de atencion -->
+				<div class="pageContacto__item">
+
+					<!-- Título -->
+					<h2 class="text-uppercase colorPurple"> 
+						<span><?= __( "horario de atención" , "LANG" ); ?> </span> </h2>
+
+					<!-- Contenido -->
+					<?php if( isset($options['theme_schedule_attention']) ) : ?>
+					<?= apply_filters("the_content" , $options['theme_schedule_attention'] ); ?>
+					<?php endif; ?>
+
+				</div> <!-- /.pageContacto__item -->
+				
+				<!-- redes sociales -->
+				<div class="pageContacto__item">
+
+					<!-- Título -->
+					<h2 class="text-uppercase colorPurple">
+					<span> <?= __( "redes sociales" , "LANG" ); ?> </span></h2>
+					
+					<!-- Menude redes sociales -->
+					<ul class="pageContacto__socialLinks">
+						<!-- Facebook -->
+						<?php if( isset($options['theme_social_fb_text']) && !empty($options['theme_social_fb_text'] ) ) : ?>
+							<li> 
+								<a target="_blank" href="<?= $options['theme_social_fb_text']; ?>" class="<?= $variation_class; ?>">
+								<!-- Icono --> <i class="fa fa-facebook" aria-hidden="true"></i>
+							</a></li>
+						<?php endif; ?>
+
+						<!-- Twitter -->
+						<?php if( isset($options['theme_social_twitter_text']) && !empty($options['theme_social_twitter_text'] ) ) : ?>
+							<li> 
+								<a target="_blank" href="<?= $options['theme_social_twitter_text']; ?>" class="<?= $variation_class; ?>">
+								<!-- Icono --> <i class="fa fa-twitter" aria-hidden="true"></i>
+							</a></li>
+						<?php endif; ?>
+
+						<!-- Youtube -->
+						<?php if( isset($options['theme_social_youtube_text']) && !empty($options['theme_social_youtube_text'] ) ) : ?>
+							<li> 
+								<a target="_blank" href="<?= $options['theme_social_youtube_text']; ?>" class="<?= $variation_class; ?>">
+								<!-- Icono --> <i class="fa fa-youtube" aria-hidden="true"></i>
+							</a></li>
+						<?php endif; ?>
+
+					</ul> <!-- /.sectionSocialLinks -->
+
+				</div> <!-- /.pageContacto__item -->
+				
+			</div> <!-- /.col-xs-12 col-sm-6 -->
 			
-			<!-- Formulario de Contacto -->
-			<section class="pageContacto__formulary">
-				<!-- Titulo  -->
-				<h2><?= __( "Formulario de Contacto" ,"LANG" ); ?></h2>
+			<!-- SECCION DE FORMULARIO -->
+			<div class="col-xs-12 col-sm-6">
 
-				<!-- Formulario -->
-				<form id="form-contacto" method="post">
+				<!-- formulario-->
+				<div class="pageContacto__item">
 
-					<!-- Nombre -->
-					<input id="input_name" type="text" class="text-form" name="txt_name" required="" placeholder="Nombre Completo">
-					
-					<!-- Direccion -->
-					<input id="input_address" type="text" class="text-form" name="txt_direc" required="" placeholder="Dirección">
-					
-					<!-- Telefono -->
-					<input id="input_phone" type="text" class="text-form" name="txt_telf" required="" placeholder="Teléfono">
-					
-					<!-- Email -->
-					<input id="input_email" type="email" class="text-form" name="txt_correo" placeholder="Correo electronico" data-parsley-trigger="change" required="" data-parsley-type-message="Escribe un email válido">
-					
-					<!-- Consulta -->
-					<textarea id="input_message" name="text_area" class="text_area" cols="" rows="" placeholder="Consulta.."></textarea>
-					
-					<input type="submit" name="btn_enviar" class="btnCommon__show-more pull-xs-right">
+					<!-- Título -->
+					<h2 class="text-uppercase colorPurple"> 
+						<span><?= __( "formulario" , "LANG" ); ?> </span>
+					</h2>
 
-					<!-- Limpiar floats --> <div class="clearfix"></div>
+					<!-- Separación --> <br>
 
-				</form>
+					<!-- Formulario -->
+					<form id="form-contacto" action="" class="pageContacto__form" method="POST">
 
-			</section> <!-- /. -->
+						<!-- Nombre -->
+						<div class="pageContacto__form__group">
+							<label for="input_name" class="sr-only"></label>
+							<input type="text" id="input_name" name="input_name" placeholder="<?php _e( 'Nombre (obligatorio)', LANG ); ?>" required />
+						</div> <!-- /.pageContacto__form__group -->
+
+						<!-- Email -->
+						<div class="pageContacto__form__group">
+							<label for="input_email" class="sr-only"></label>
+							<input type="email" id="input_email" name="input_email" placeholder="<?php _e( 'E-mail (obligatorio)', LANG ); ?>" data-parsley-trigger="change" required="" data-parsley-type-message="Escribe un email válido"/>
+						</div> <!-- /.pageContacto__form__group -->						
+
+						<!-- Teléfono -->
+						<div class="pageContacto__form__group">
+							<label for="input_phone" class="sr-only"></label>
+							<input type="text" id="input_phone" name="input_phone" placeholder="<?php _e( 'Teléfono (obligatorio)', LANG ); ?>" data-parsley-type='digits' data-parsley-type-message="Solo debe contener números" required="" />
+						</div> <!-- /.pageContacto__form__group -->
+
+						<!-- Asunto --> 
+						<div class="pageContacto__form__group">
+							<label for="input_subject" class="sr-only"></label>
+							<input type="text" id="input_subject" name="input_subject" placeholder="<?php _e( 'Asunto', LANG ); ?>" required />
+						</div> <!-- /.pageContacto__form__group --> 
+
+						<!-- Mensaje -->
+						<div class="pageContacto__form__group">
+							<label for="input_consulta" class="sr-only"></label>
+							<textarea name="input_consulta" id="input_consulta" placeholder="<?php _e( 'Mensaje', LANG ); ?>" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Necesitas más de 20 caracteres" data-parsley-validation-threshold="10"></textarea>
+						</div> <!-- /.pageContacto__form__group -->
+
+						<!-- Boton -->
+						<button type="submit" id="send-form" class="btnCommon__show-more text-uppercase">
+							<?php _e( 'enviar' , LANG ); ?>
+						</button>
 
 
-		</section> <!-- /pageContacto__content -->
+					</form> <!-- /. -->
+
+				</div> <!-- /.pageContacto__item -->
+				
+			</div> <!-- /.col-xs-12 col-sm-6 -->
+
+		</div> <!-- /.row -->
 
 
 
-	</section> <!-- /.pageWrapper__content -->
+
+		<?php 
+			/**
+			** Incluir Plantilla de Catálogo
+			**/
+			include( locate_template("partials/common/section-catalogo-empresa.php") );
+		?>
+		
+	</div> <!-- /.pageWrapperLayout -->
+
+
+<!-- SECCION DE MAPA -->
+<?php if( ( isset($options['theme_lat_coord']) and !empty($options['theme_lat_coord']) ) && ( isset($options['theme_long_coord']) and !empty($options['theme_long_coord']) ) ) : ?>
+	
+	<section class="pageContacto__mapa">
+		<div id="canvas-map"></div>
+	</section>
+
+<?php endif; ?>
 
 </main> <!-- /.pageWrapper -->
 
@@ -74,8 +245,11 @@
 
 <!-- Scripts Solo para esta plantilla -->
 <?php 
-	if( isset($options['theme_lat_coord']) && isset($options['theme_long_coord']) ) : 
+	if( ( isset($options['theme_lat_coord']) and !empty($options['theme_lat_coord']) ) && ( isset($options['theme_long_coord']) and !empty($options['theme_long_coord']) ) ) : 
+
+	#Zoom de mapa
 	$zoom_mapa = isset( $options['theme_zoom_mapa'] ) && !empty( $options['theme_zoom_mapa'] ) ? $options['theme_zoom_mapa'] : 16;
+
 ?>
 	<script type="text/javascript">	
 		<?php  
@@ -93,11 +267,16 @@
 	      });
 	      //infowindow
 	      <?php  
-	      	$contenido_markup = "";
-	      	if ( isset($options['theme_text_markup_map']) )
-	      	{
-	      		$contenido_markup = apply_filters("the_content" , $options['theme_text_markup_map']  );
-	      	}
+
+	      	if ( isset($options['theme_text_markup_map']) and !empty($options['theme_text_markup_map']) ) :
+	      		$contenido_markup = trim( $options['theme_text_markup_map'] );
+
+	      		$contenido_markup = !empty($contenido_markup) ? apply_filters("the_content" , $options['theme_text_markup_map']  ) : get_bloginfo("name");
+	      	else:
+
+	      		$contenido_markup = "Aissa Secret";
+
+	      	endif;
 	      ?>
 
 	      var contenido_markup = <?= json_encode( $contenido_markup ) ?>;
@@ -124,6 +303,7 @@
 	    google.maps.event.addDomListener(window, "load", initialize);
 	</script>
 <?php endif; ?>
+
 
 <!-- Footer -->
 <?php get_footer(); ?>
