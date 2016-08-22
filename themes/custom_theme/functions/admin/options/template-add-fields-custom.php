@@ -270,7 +270,7 @@ function custom_settings_section_nosotros_callback()
 	echo __( 'Personaliza los campos correspondientes:', 'LANG' );
 }
 
-//META LOGO
+//META PRESENTACION
 add_settings_field( 'theme_meta_presentacion', __( 'Presentación', 'LANG' ), 'custom_presentacion_render', 'customThemePageNosotros', PREFIX."_themePage_section_nosotros" );
 //Renderizado 
 function custom_presentacion_render() 
@@ -307,6 +307,46 @@ function custom_theme_vision_render()
 }
 
 
+
+//META PDF CATALOGO
+add_settings_field( 'theme_meta_pdf_download', __( 'Catálogo Descargable', 'LANG' ), 'custom_pdf_download_render', 'customThemePageNosotros', PREFIX."_themePage_section_nosotros" );
+//Renderizado 
+function custom_pdf_download_render() 
+{ 
+	$options = get_option( 'theme_settings' ); ?>
+	
+    <!-- Contenedor de Imagen -->
+    <section class="customize-img-container">
+
+        <!-- Input oculto guarda imagen -->
+        <input type="hidden" id="theme_meta_pdf_download" class="" name="theme_settings[theme_meta_pdf_download]" size="25" value="<?= !empty($options['theme_meta_pdf_download']) ? $options['theme_meta_pdf_download'] : "" ; ?>" />
+
+        <!-- Contenedor Agregar Imagen Previa -->
+        <div class="container-preview">
+            <?php if( !empty($options['theme_meta_pdf_download']) && !is_null($options['theme_meta_pdf_download']) ) : ?>
+            <img src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ55AIOi-sjA6Zvg8_qimAHmS78xKFq7smXO9FOUtzOX6P6I5yOow' style='width:45px; height:45px;' />
+            <?php endif ?>
+        </div> 
+        
+        <!-- Botón agregar imágen --> 
+        <br/>
+
+        <button class="js-add-custom-img button button-primary" data-input="theme_meta_pdf_download" data-element-type="pdf">
+            <?php empty($options['theme_meta_pdf_download']) || is_null($options['theme_meta_pdf_download']) ? _e( 'Agregar Catálogo PDF' , LANG ) : _e( 'Cambiar PDF' , LANG ) ; ?>
+        </button> 
+
+        <!-- Botón remover Imagen Oculto -->
+        <button class="js-remove-custom-img button button-primary" data-input="theme_meta_pdf_download">
+            <?php _e( 'Remover PDF' , LANG ); ?>
+        </button>
+
+        <!-- Descripcion -->
+        <br/><p class="description"><?php _e('Subir una imagen para este campo'); ?></p>
+
+    </section> <!-- /.customize-img-container -->
+		
+	<?php
+}
 
 
 

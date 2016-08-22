@@ -58,6 +58,7 @@ var j = jQuery.noConflict();
 		* SECCIÓN SUBIR IMAGENES (TÉRMINOS DE TAXONOMÍAS , ETC )
 		**************************************************************************/
 	    if( j(".js-add-custom-img").length ){ 
+
 	    	var btn_add_img_tax = j(".js-add-custom-img");
 
 	    	btn_add_img_tax.on('click', function(e){
@@ -66,6 +67,9 @@ var j = jQuery.noConflict();
 
 	    		//Referenciarse asi mismo
 	    		var this_btn_add_img = j(this);
+
+	    		//Tipo de elemento 
+	    		var this_type_element = j(this).attr('data-element-type') !== null && typeof(j(this).attr('data-element-type') ) !== "undefined" ? j(this).attr('data-element-type') : 'image';
 			
 				//var input_img_tax = j(this).attr('data-input');
 				var Uploader;
@@ -94,10 +98,29 @@ var j = jQuery.noConflict();
 	          		//setea el campo
 	          		campo_field.val(attachment.url);
 
-	          		//Agregamos una imagen de vista previa
-	          		var vistaPrevia = "<a class='js-add-custom-img'>";
-	          		vistaPrevia += "<img src='"+attachment.url+"' style='width:100px; height:100px;' />";
-	          		vistaPrevia += "</a>";
+
+	          		//SEGUN TIPO DE ELEMENTO this_type_element
+	          		switch( this_type_element )
+	          		{
+	          			//segun pdf
+	          			case 'pdf':
+
+	          				var vistaPrevia = "<a class='js-add-custom-img' data-element-type='pdf'>";
+			          		vistaPrevia += "<img src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ55AIOi-sjA6Zvg8_qimAHmS78xKFq7smXO9FOUtzOX6P6I5yOow' style='width:45px; height:45px;' />";
+			          		vistaPrevia += "</a>";
+
+	          			break;
+
+	          			//otros casos o imagen
+	          			default: 
+		
+			          		//Agregamos una imagen de vista previa
+			          		var vistaPrevia = "<a class='js-add-custom-img'>";
+			          		vistaPrevia += "<img src='"+attachment.url+"' style='width:100px; height:100px;' />";
+			          		vistaPrevia += "</a>";
+
+	          			break;
+	          		}
 
 	          		//al contenedor de vista previa
 	          		this_btn_add_img.parent(".customize-img-container")

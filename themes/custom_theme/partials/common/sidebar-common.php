@@ -71,7 +71,7 @@ $options = get_option("theme_settings");
 			<ul class="productList__menu <?= $all_select_menu; ?>">
 				
 				<li>
-					<a href="javascript:void(0)" class="text-uppercase colorPurple"> <?= $cat_parent->name; ?> </a>
+					<a href="<?= get_term_link( $cat_parent ); ?>" class="text-uppercase colorPurple"> <?= $cat_parent->name; ?> </a>
 				</li>
 		<?php
 

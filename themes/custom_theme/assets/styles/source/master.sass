@@ -208,6 +208,22 @@ body
 		font-weight: 600
 		max-width  : 255px
 
+//Botón ver más
+.pageInicio__slider__more
+	+box-shadow( inset 0 0 0 0 transparent )
+	+transition( all 800ms ease-in-out )
+	border     : 1px solid black 
+	color      : black !important
+	font-size  : 14px 
+	line-height: 1em 
+	padding    : 7px 11px
+	font-family: "Arial", sans-serif
+	//hover y focus
+	&:hover , &:focus
+		outline        : 0px !important
+		text-decoration: none 
+
+
 /** [ Flechas de Carousel ] **/
 .pageInicio__slider__arrows
 	a 
@@ -305,6 +321,9 @@ body
 		font-size: 14px
 	
 
+/***/
+.sectionCommun__marcas__content 
+	background: white
 
 /***************************************************************************************/
 /**--  PÁGINA PRODUCTOS --------------------------------------------------------------**/

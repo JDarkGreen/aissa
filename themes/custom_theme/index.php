@@ -47,8 +47,14 @@ include( locate_template("partials/slider-home/slider-home-revolution.php") );
 
 			<!-- Catálogo -->
 			<div class="col-xs-12 col-sm-4">
-				<section class="pageCommon__catalogo">
-					<a href="">
+				<section class="pageCommon__catalogo borderPurpleShadow">
+					
+					<?php  
+						#Extraer link catelogo
+						$link_catalogo = isset($options['theme_meta_pdf_download']) && !empty($options['theme_meta_pdf_download']) ? $options['theme_meta_pdf_download'] : "#";
+					?>
+
+					<a target="_blank" href="<?= $link_catalogo; ?>">
 						<img src="<?= IMAGES ?>/catalogo_aissa.jpg" alt="prendas-lencería-peru" class="img-fluid" />
 					</a>
 				</section> <!-- /. -->

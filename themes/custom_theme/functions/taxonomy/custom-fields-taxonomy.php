@@ -304,11 +304,13 @@ function save_taxonomy_custom_fields( $term_id ) {
     $meta_order = get_term_meta( $term_id , 'meta_order_taxonomy' , true );
 
     #Si ya tiene un meta data 
-    if ( ! add_term_meta ( $term_id , 'meta_order_taxonomy' , 1 ) ) :
+    if ( !empty($meta_order) ):
         
         #actualizar valor
         update_term_meta( $term_id , 'meta_order_taxonomy' , $_POST['term_meta']['theme_tax_order'] );
-    
+    else:
+        #agregar meta y valor 
+        add_term_meta( $term_id, 'meta_order_taxonomy' , 1 );
     endif;
 
 }

@@ -60,8 +60,23 @@
 							<?php _e( get_the_content() , LANG ); ?>
 						</p> <!-- /.pageInicio__slider__content -->
 						
+						<div class="text-xs-center">
+							
+							<?php  
+								#Extraer metabox de pagina
+								$mb_page = get_post_meta( get_the_ID() , 'theme_slider_show_more_page' , true );
+
+								$mb_page = !empty($mb_page) ? $mb_page : "#";
+							?>
+
+							<a href="<?= $mb_page; ?>" class="pageInicio__slider__more text-uppercase"> 
+								VER MÁS
+							</a>
+						</div>
+						
 					</div> <!-- /.pageInicio__slider__meta-content -->
 				</div> <!-- /.caption sft big_white -->
+				
 
 			</li> <!-- /.item-slider -->
 			

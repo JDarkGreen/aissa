@@ -11,9 +11,16 @@
 
 			<!-- Descargar -->
 			<div class="text-xs-center">
-				<a href="" target="_blank" class="btnCommon__show-more text-uppercase">
+
+				<?php  
+					#Extraer link catelogo
+					$link_catalogo = isset($options['theme_meta_pdf_download']) && !empty($options['theme_meta_pdf_download']) ? $options['theme_meta_pdf_download'] : "#";
+				?>
+
+				<a href="<?= $link_catalogo; ?>" target="_blank" class="btnCommon__show-more text-uppercase">
 					<?= __( "click aquí" , LANG ); ?>
 				</a>
+
 			</div> <!-- /.text-xs-center -->
 
 		</div> <!-- /.col-xs-12 col-sm-8 -->
