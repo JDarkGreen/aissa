@@ -129,7 +129,12 @@ $id_current_element = $first_child_element->term_id;
 									<h3 class="text-uppercase"> <?= get_the_title(); ?></h3>
 
 									<!-- El Código -->
-									<h4 class="text-xs-uppercase"> COD 046 </h4>
+									<h4 class="text-xs-uppercase"> 
+									<?php 
+										$code_product = get_post_meta( $post->ID , 'mb_code_product_text' , TRUE );
+										echo !empty($code_product) ? $code_product : "";
+									?> 
+									</h4>
 
 									<!-- El extracto -->
 									<?php  
