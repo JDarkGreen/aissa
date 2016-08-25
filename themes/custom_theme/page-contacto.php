@@ -216,13 +216,27 @@
 		</div> <!-- /.row -->
 
 
+		<!-- CONTENIDO DE PAGINA -->
+		<section class="pageContacto__item">
+
+			<!-- Título -->
+			<h2 class="text-uppercase colorPurple"> 
+				<span> <?= __( "distribuidores" , "LANG" ); ?> </span>
+			</h2>
+
+			<!-- Espacio -->
+
+			<!-- Contenido -->
+			<?= apply_filters( "the_content" , $post->post_content ); ?>
+			
+		</section> <!-- /.pageContacto__item -->
 
 
 		<?php 
 			/**
 			** Incluir Plantilla de Catálogo
-			**/
 			include( locate_template("partials/common/section-catalogo-empresa.php") );
+			**/
 		?>
 		
 	</div> <!-- /.pageWrapperLayout -->
@@ -232,7 +246,7 @@
 <?php if( ( isset($options['theme_lat_coord']) and !empty($options['theme_lat_coord']) ) && ( isset($options['theme_long_coord']) and !empty($options['theme_long_coord']) ) ) : ?>
 	
 	<section class="pageContacto__mapa">
-		<div id="canvas-map"></div>
+		<div id="canvas-map" class="hidden-xs-up"></div>
 	</section>
 
 <?php endif; ?>
