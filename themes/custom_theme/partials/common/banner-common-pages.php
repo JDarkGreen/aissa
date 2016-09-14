@@ -3,7 +3,7 @@
 <?php if( isset($banner) || isset($banner_object) ) : ?>
 	
 	<!-- BANNER DE LA PAGINA -->
-	<section class="pageCommon__banner relative">
+	<section class="pageCommon__banner containerRelative">
 		<!-- Conseguir el banner por defecto -->
 		<?php 
 			#Si es un post 
